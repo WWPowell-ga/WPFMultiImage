@@ -10,7 +10,7 @@ Joined Twitter so I can Tweet at #IAmTimCorey.
 Joined GitHub and did initial commit of project after rewatching Tim Corey video.
 
 ## 2022 Jan 6
-Changed Twitter handle
-Tweeted Markdown cheetsheet
-Rebuilt Worklog
-Completed initial roadmap - this is subject to change
+Changed Twitter handle  
+Tweeted Markdown cheetsheet  
+Rebuilt Worklog  
+Completed initial roadmap - this is subject to change  
