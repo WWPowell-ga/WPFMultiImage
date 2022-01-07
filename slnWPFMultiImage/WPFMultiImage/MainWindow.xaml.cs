@@ -23,6 +23,15 @@ namespace WPFMultiImage
         public MainWindow()
         {
             InitializeComponent();
+
+            InitMainWindow();
         }
+
+        private void InitMainWindow()
+        {
+            this.Title = "WPFMultiImage";
+            this.WindowState = WindowState.Maximized; //Max the parent window
+        }
+
     }
 }
