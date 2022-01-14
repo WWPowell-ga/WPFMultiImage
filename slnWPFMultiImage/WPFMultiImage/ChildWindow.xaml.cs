@@ -10,7 +10,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using System.IO;
@@ -18,43 +17,23 @@ using System.IO;
 namespace WPFMultiImage
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ChildWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ChildWindow : Window
     {
-        public static string[] FileList = Array.Empty<string>(); //List of files selected in OpenFileDialog
-        public static string FileType = "";
-        public static int ImageIndex;
+        string FileType; //Type of graphics file as determined by extension
+        
 
-        public MainWindow()
+        //public ChildWindow()
+        //{
+        //    InitializeComponent();
+        //}
+
+        public ChildWindow(string fn)
         {
             InitializeComponent();
 
-            InitMainWindow();
-        }
-
-        private void InitMainWindow()
-        {
-            this.Title = "WPFMultiImage";
-            this.WindowState = WindowState.Maximized; //Max the parent window
-
-            ImageGrid.Visibility = Visibility.Hidden;
-
-            Application.Current.MainWindow = this;
-        }
-
-        public void DisplayAnImage()
-        {
-            if (ImageGrid.Visibility == Visibility.Hidden)
-            {
-                ImageIndex = 0;
-                DisplayOneImage(ImageIndex);
-            }
-        }
-
-        public void DisplayOneImage(int i)
-        {
-            FileInfo fi = new FileInfo(FileList[i]);
+            FileInfo fi = new FileInfo(fn);
 
             this.Title = fi.FullName;
             this.ToolTip = fi.FullName; //So you can see name of file when window minimized
@@ -83,19 +62,19 @@ namespace WPFMultiImage
 
             RefreshImage(fi);
             RefreshStats(fi);
-        }//DisplayOneImage
+        }
 
         public void RefreshStats(FileInfo info)
         {
             this.FullName.Content = info.FullName;
             this.CreationTime.Content = info.CreationTime.ToString("F"); //Full datetime longtime
             this.LastWriteTime.Content = info.LastWriteTime.ToString("F");
-            this.Size.Content = info.Length.ToString();
+            this.Size.Content = info.Length.ToString();            
         }
 
         private void RefreshImage(FileInfo info)
         {
-            BitmapImage bi = new();
+            BitmapImage bi = new(); 
 
             bi.BeginInit();
             bi.UriSource = new Uri(info.FullName);
@@ -108,9 +87,9 @@ namespace WPFMultiImage
             this.PixelSize.Content = bi.PixelWidth.ToString() + " x " + bi.PixelHeight.ToString();
             this.InchSize.Content = (bi.Width / 96).ToString() + " x " + (bi.Height / 96).ToString();
             this.DPISize.Content = bi.DpiX.ToString() + " x " + bi.DpiY.ToString();
-
+            
             this.PixelFormat.Content = bi.Format.ToString();
-
+            
             if (true) //Gif or tiff
             { //BitmapPalette
             }
@@ -140,54 +119,8 @@ namespace WPFMultiImage
                 {
 
                 }
-            }
+            }     
         }//RefreshImage
-
-        //== Menu clicks
-
-        public void Exit_Click(object sender, RoutedEventArgs e)
-        {
-            App.Current.Shutdown();
-        }
-
-        private void Open_Click(object sender, RoutedEventArgs e)
-        {
-            if (FileDialogImage.OpenFileDialogImage()) //FileList is filled out
-            {
-                DisplayAnImage();
-                ImageGrid.Visibility = Visibility.Visible;
-            }
-        }
-
-        private void Min_All(object sender, RoutedEventArgs e)
-        {
-            foreach (Window child in Application.Current.Windows)
-            {
-                if (child != Application.Current.MainWindow)
-                    child.WindowState = WindowState.Minimized;
-            }
-
-        }
-
-        private void Norm_All(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Max_All(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Close_All(object sender, RoutedEventArgs e)
-        {
-            foreach (Window child in Application.Current.Windows)
-            {
-                if (child != Application.Current.MainWindow)
-                    child.Close();
-            }
-
-        }
 
     }//class
 }//namespace
