@@ -11,6 +11,7 @@ namespace WPFMultiImage
 {
     public static class FileDialogImage
     {
+        public static string[] FileNames; //Array of files just selected
         public static bool OpenFileDialogImage()
         {
             bool retval = false;
@@ -25,9 +26,8 @@ namespace WPFMultiImage
 
             if (ofd.ShowDialog() == true)
             {
+                FileNames = ofd.FileNames;
                 retval = true; //if ShowDialog is false or null return false
-                MainWindow.FileList = MainWindow.FileList.Concat(ofd.FileNames).ToArray(); //add ofd.Filenames to FileList
-                
             }
 
             return retval;

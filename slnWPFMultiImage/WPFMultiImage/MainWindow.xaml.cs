@@ -22,128 +22,110 @@ namespace WPFMultiImage
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static string[] FileList = Array.Empty<string>(); //List of files selected in OpenFileDialog
-        public static string FileType = "";
-        public static int ImageIndex;
+        public CarouselClass Carousel { get; set; }
+        public Dictionary<string,ImagesClass> Images = new Dictionary<string, ImagesClass>();
 
         public MainWindow()
         {
             InitializeComponent();
 
-            InitMainWindow();
-        }
-
-        private void InitMainWindow()
-        {
-            this.Title = "WPFMultiImage";
-            this.WindowState = WindowState.Maximized; //Max the parent window
-
+            DataContext = this;
             ImageGrid.Visibility = Visibility.Hidden;
 
-            Application.Current.MainWindow = this;
+            InitCarousel();
         }
 
-        public void DisplayAnImage()
+        private void InitCarousel()
         {
-            if (ImageGrid.Visibility == Visibility.Hidden)
-            {
-                ImageIndex = 0;
-                DisplayOneImage(ImageIndex);
-            }
+            Carousel = new();
+            //Carousel.ImagesLoaded = Visibility.Hidden;
+            Carousel.FileList = new();
+            Carousel.InitCurrent();
+            Carousel.Displayed = "";
         }
 
-        public void DisplayOneImage(int i)
-        {
-            FileInfo fi = new FileInfo(FileList[i]);
+        //public void DisplayAnImage()
+        //{
+        //    if (ImageGrid.Visibility == Visibility.Hidden)
+        //    {
+        //        ImageIndex = 0;
+        //        DisplayOneImage(ImageIndex);
+        //    }
+        //}
 
-            this.Title = fi.FullName;
-            this.ToolTip = fi.FullName; //So you can see name of file when window minimized
-            string ext = fi.Extension;
+        //public void DisplayOneImage(int i)
+        //{
+        //    FileInfo fi = new FileInfo(FileList[i]);
 
-            switch (ext)
-            {
-                case ".bmp":
-                    FileType = "BMP"; break;
-                case ".gif":
-                    FileType = "GIF"; break;
-                case ".ico":
-                    FileType = "ICO"; break;
-                case ".jpg":
-                case ".jpeg":
-                    FileType = "JPG"; break;
-                case ".png":
-                    FileType = "PNG"; break;
-                case ".tif":
-                case ".tiff":
-                    FileType = "GIF"; break;
-                default:
-                    FileType = ""; //This is a programmer error!
-                    break;
-            }
+        //    this.Title = fi.FullName;
+        //    this.ToolTip = fi.FullName; //So you can see name of file when window minimized
+        //    string ext = fi.Extension;
 
-            RefreshImage(fi);
-            RefreshStats(fi);
-        }//DisplayOneImage
+        //    
 
-        public void RefreshStats(FileInfo info)
-        {
-            this.FullName.Content = info.FullName;
-            this.CreationTime.Content = info.CreationTime.ToString("F"); //Full datetime longtime
-            this.LastWriteTime.Content = info.LastWriteTime.ToString("F");
-            this.Size.Content = info.Length.ToString();
-        }
+        //    RefreshImage(fi);
+        //    RefreshStats(fi);
+        //}//DisplayOneImage
 
-        private void RefreshImage(FileInfo info)
-        {
-            BitmapImage bi = new();
+        //public void RefreshStats(FileInfo info)
+        //{
+        //    this.FullName.Content = info.FullName;
+        //    this.CreationTime.Content = info.CreationTime.ToString("F"); //Full datetime longtime
+        //    this.LastWriteTime.Content = info.LastWriteTime.ToString("F");
+        //    this.Size.Content = info.Length.ToString();
+        //}
 
-            bi.BeginInit();
-            bi.UriSource = new Uri(info.FullName);
+        //private void RefreshImage(FileInfo info)
+        //{
+        //    BitmapImage bi = new();
 
-            bi.EndInit();
+        //    bi.BeginInit();
+        //    bi.UriSource = new Uri(info.FullName);
 
-            theImg.Source = bi;
+        //    bi.EndInit();
 
-            //stats
-            this.PixelSize.Content = bi.PixelWidth.ToString() + " x " + bi.PixelHeight.ToString();
-            this.InchSize.Content = (bi.Width / 96).ToString() + " x " + (bi.Height / 96).ToString();
-            this.DPISize.Content = bi.DpiX.ToString() + " x " + bi.DpiY.ToString();
+        //    theImg.Source = bi;
 
-            this.PixelFormat.Content = bi.Format.ToString();
+        //    //stats
+        //    this.PixelSize.Content = bi.PixelWidth.ToString() + " x " + bi.PixelHeight.ToString();
+        //    this.InchSize.Content = (bi.Width / 96).ToString() + " x " + (bi.Height / 96).ToString();
+        //    this.DPISize.Content = bi.DpiX.ToString() + " x " + bi.DpiY.ToString();
 
-            if (true) //Gif or tiff
-            { //BitmapPalette
-            }
+        //    this.PixelFormat.Content = bi.Format.ToString();
 
-            List<string> HasMetaData = new List<String>(new string[] { "GIF", "JPG", "PNG", "TIF" });
-            if (HasMetaData.Any(x => FileType.Contains(x)))
-            {
-                try
-                {
-                    BitmapMetadata bmd = new(FileType);
+        //    if (true) //Gif or tiff
+        //    { //BitmapPalette
+        //    }
 
-                    this.metadataApplicationName.Content = bmd.ApplicationName;
-                    //this.Author.Content = bmd.Author.ToString();
-                    //this.CameraManufacturer.Content = bmd.CameraManufacturer;
-                    //this.CameraModel.Content = bmd.CameraModel;
-                    //this.Comment.Content = bmd.Comment;
-                    //this.Copyright.Content = bmd.Copyright;
-                    //this.DateTaken.Content = bmd.DateTaken;
-                    //this.Format.Content = bmd.Format;
-                    //this.Keywords.Content = bmd.Format;
-                    //this.LocationChanged.Content = bmd.Location;
-                    //this.Rating.Content = bmd.Rating.ToString(); //0 thru 5
-                    //this.Subject.Content = bmd.Subject;
-                    //this.metadataTitle.Content = bmd.Title;
-                }
-                catch //do nothing if codec does not support metadata properly
-                {
+        //    List<string> HasMetaData = new List<String>(new string[] { "GIF", "JPG", "PNG", "TIF" });
+        //    if (HasMetaData.Any(x => FileType.Contains(x)))
+        //    {
+        //        try
+        //        {
+        //            BitmapMetadata bmd = new(FileType);
 
-                }
-            }
-        }//RefreshImage
+        //            this.metadataApplicationName.Content = bmd.ApplicationName;
+        //            //this.Author.Content = bmd.Author.ToString();
+        //            //this.CameraManufacturer.Content = bmd.CameraManufacturer;
+        //            //this.CameraModel.Content = bmd.CameraModel;
+        //            //this.Comment.Content = bmd.Comment;
+        //            //this.Copyright.Content = bmd.Copyright;
+        //            //this.DateTaken.Content = bmd.DateTaken;
+        //            //this.Format.Content = bmd.Format;
+        //            //this.Keywords.Content = bmd.Format;
+        //            //this.LocationChanged.Content = bmd.Location;
+        //            //this.Rating.Content = bmd.Rating.ToString(); //0 thru 5
+        //            //this.Subject.Content = bmd.Subject;
+        //            //this.metadataTitle.Content = bmd.Title;
+        //        }
+        //        catch //do nothing if codec does not support metadata properly
+        //        {
 
-        //== Menu clicks
+        //        }
+        //    }
+        //}//RefreshImage
+
+        ////== Menu clicks
 
         public void Exit_Click(object sender, RoutedEventArgs e)
         {
@@ -154,37 +136,77 @@ namespace WPFMultiImage
         {
             if (FileDialogImage.OpenFileDialogImage()) //FileList is filled out
             {
-                DisplayAnImage();
+                Carousel.AddToFileList(FileDialogImage.FileNames);
+
+                DisplayImage();
+            }
+        }
+
+        private void DisplayImage()
+        {
+            string fileinquestion = (string)Carousel.FileList[Carousel.Current];
+
+            //Might already be visible
+            //if (Carousel.ImagesLoaded != Visibility.Visible)
+            //    Carousel.ImagesLoaded = Visibility.Visible;
+
+            if (ImageGrid.Visibility == Visibility.Hidden)
                 ImageGrid.Visibility = Visibility.Visible;
-            }
-        }
 
-        private void Min_All(object sender, RoutedEventArgs e)
-        {
-            foreach (Window child in Application.Current.Windows)
+            //Might already be in the dictionary
+            if (!(Images.ContainsKey(fileinquestion)))
             {
-                if (child != Application.Current.MainWindow)
-                    child.WindowState = WindowState.Minimized;
+                ImagesClass oneImage = new();
+                Images[fileinquestion] = oneImage.LoadImage(fileinquestion); //Lazy loading
             }
 
-        }
-
-        private void Norm_All(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Max_All(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Close_All(object sender, RoutedEventArgs e)
-        {
-            foreach (Window child in Application.Current.Windows)
+            //Might already be displayed
+            if (Carousel.Displayed != fileinquestion)
             {
-                if (child != Application.Current.MainWindow)
-                    child.Close();
+                RefreshScreen(Images[fileinquestion]);
+                
+                Carousel.Displayed = fileinquestion;
+            }
+        }//DisplayImage
+
+        private void RefreshScreen(ImagesClass img)
+        {
+            //Update the xaml
+            
+            theImg.Source = img.BitmapImage;
+
+            FullName.Content = img.FileInfo.FullName;
+            CreationTime.Content = img.FileInfo.CreationTime.ToString("F"); //Full datetime longtime
+            LastWriteTime.Content = img.FileInfo.LastWriteTime.ToString("F");
+            Size.Content = img.FileInfo.Length.ToString();
+
+            PixelSize.Content = img.PixelSize();
+            InchSize.Content = img.InchSize();
+            DPISize.Content = img.DPISize();
+            PixelFormat.Content = img.BitmapImage.Format.ToString();
+
+            if (!(img.BitmapMetadata is null))
+            {
+                
+                metadataApplicationName.Content = img.ApplicationName();
+                Author.Content = img.Author();
+                CameraManufacturer.Content = img.CameraManufacturer();
+                CameraModel.Content = img.CameraModel();
+                Comment.Content = img.Comment();
+                Copyright.Content = img.Copyright();
+                DateTaken.Content = img.DateTaken();
+                Format.Content = img.Format();
+                Keywords.Content = img.Keywords();
+                Location.Content = img.Location();
+
+                int rating = img.Rating();
+                Rating.Content = (rating == -1) ? "<not supported>" : img.Rating().ToString(); //0 thru 5
+
+                Subject.Content = img.Subject();
+                metadataTitle.Content = img.metadataTitle();
+
+                BitsPerPixel.Content = img.BPP().ToString();
+                Masks.Content = img.Masks();
             }
 
         }

@@ -61,5 +61,15 @@ Going to start moving to a Navigation-style window I think.
 Created robust ImagesClass
 Started creating CarouselClass
 
+## 2022 Jan 14
+Getting closer
+BitmapImage is not being returned??? Maybe should be BitmapSource???
+
+## 2022 Jan 15
+Stupid bug with BitmapImage fixed
+ImageGrid displaying images
+Stats complete but not Palette
+Not System.Windows.Media.PixelFormats contains good info but is deep.
+I'll have to write a BIG switch to support it. Later.
 
 

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFMultiImage"
         mc:Ignorable="d"
-        Height="450" Width="800" Name="mainWindow">
+        Name="mainWindow" Height="450" Width="800" Title="WPFMultiWindow" WindowState="Maximized">
     
     <Grid ShowGridLines="True">
         <Grid.RowDefinitions>
@@ -18,13 +18,6 @@
                 <MenuItem Header="_Open" Click="Open_Click" />
                 <Separator />
                 <MenuItem Header="_Exit" Click="Exit_Click" />
-            </MenuItem>
-
-            <MenuItem Header="_Windows">
-                <MenuItem Header="_Minimize All Windows" Click="Min_All"/>
-                <MenuItem Header="_Normalize All Windows" Click="Norm_All"/>
-                <MenuItem Header="Ma_ximize All Windows" Click="Max_All"/>
-                <MenuItem Header="_Close All Windows" Click="Close_All"/>
             </MenuItem>
         </Menu>
 
@@ -42,7 +35,7 @@
                     <Canvas.Background>
                         <VisualBrush>
                             <VisualBrush.Visual>
-                                <Image Name="theImg" />
+                                <Image Name="theImg"/>
                             </VisualBrush.Visual>
                         </VisualBrush>
                     </Canvas.Background>
@@ -62,14 +55,30 @@
                     <RowDefinition />
                     <RowDefinition />
 
+                    <RowDefinition /> <!--4-->
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
+                    <RowDefinition /> <!--9-->
 
                     <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition /><!--16-->
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition /><!--22-->
+
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition /><!--25-->
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Full Name:" />
@@ -106,6 +115,52 @@
 
                 <Label Grid.Column="0" Grid.Row="10" Content="Application Name:" />
                 <Label Grid.Column="1" Grid.Row="10" Name="metadataApplicationName" />
+
+                <Label Grid.Column="0" Grid.Row="11" Content="Author:" />
+                <Label Grid.Column="1" Grid.Row="11" Name="Author" />
+
+                <Label Grid.Column="0" Grid.Row="12" Content="Camera Manufacturer:" />
+                <Label Grid.Column="1" Grid.Row="12" Name="CameraManufacturer" />
+
+                <Label Grid.Column="0" Grid.Row="13" Content="Camera Model:" />
+                <Label Grid.Column="1" Grid.Row="13" Name="CameraModel" />
+
+                <Label Grid.Column="0" Grid.Row="14" Content="Comment:" />
+                <Label Grid.Column="1" Grid.Row="14" Name="Comment" />
+
+                <Label Grid.Column="0" Grid.Row="15" Content="Copyright:" />
+                <Label Grid.Column="1" Grid.Row="15" Name="Copyright" />
+
+                <Label Grid.Column="0" Grid.Row="16" Content="Date Taken:" />
+                <Label Grid.Column="1" Grid.Row="16" Name="DateTaken" />
+
+                <Label Grid.Column="0" Grid.Row="17" Content="Format:" />
+                <Label Grid.Column="1" Grid.Row="17" Name="Format" />
+
+                <Label Grid.Column="0" Grid.Row="18" Content="Keywords:" />
+                <Label Grid.Column="1" Grid.Row="18" Name="Keywords" />
+
+                <Label Grid.Column="0" Grid.Row="19" Content="Location:" />
+                <Label Grid.Column="1" Grid.Row="19" Name="Location" />
+
+                <Label Grid.Column="0" Grid.Row="20" Content="Rating:" />
+                <Label Grid.Column="1" Grid.Row="20" Name="Rating" />
+
+                <Label Grid.Column="0" Grid.Row="21" Content="Subject:" />
+                <Label Grid.Column="1" Grid.Row="21" Name="Subject" />
+
+                <Label Grid.Column="0" Grid.Row="22" Content="Title:" />
+                <Label Grid.Column="1" Grid.Row="22" Name="metadataTitle" />
+
+                <!-- Row 23 blank -->
+                <Label Grid.Column="0" Grid.Row="23" Content=" " />
+                <Label Grid.Column="1" Grid.Row="23" Content=" " />
+                
+                <Label Grid.Column="0" Grid.Row="24" Content="Bits Per Pixel:" />
+                <Label Grid.Column="1" Grid.Row="24" Name="BitsPerPixel" />
+                
+                <Label Grid.Column="0" Grid.Row="25" Content="Masks:" />
+                <Label Grid.Column="1" Grid.Row="25" Name="Masks" />
 
             </Grid> <!-- stats -->
         </Grid> <!-- bottom -->
