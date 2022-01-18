@@ -19,23 +19,6 @@ namespace WPFMultiImage
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private Visibility _imagesloaded;
-        public Visibility ImagesLoaded
-        {
-            get
-            {
-                return _imagesloaded;
-            }
-            set
-            {
-                if (value != _imagesloaded)
-                {
-                    _imagesloaded = value;
-                    //NotifyPropertyChanged();
-                }
-            }
-        }
-
         private int _current;
         public int Current
         {
@@ -92,12 +75,16 @@ namespace WPFMultiImage
         public void AddToFileList(string[] morefiles)
         {
 
-            FileList.AddRange(morefiles);
+            foreach (string fn in morefiles)
+            {
+                if (!(FileList.Contains(fn)))
+                    FileList.Add(fn);
+            }
         }
 
         //=================================================================================================
 
-        public void InitCurrent()
+        public void ZeroCurrent()
         {
             this.Current = 0;
         }
@@ -107,7 +94,7 @@ namespace WPFMultiImage
             this.Current = this.Current - 1;
 
             if (this.Current < 0)
-                this.Current = this.FileList.Count;
+                this.Current = this.FileList.Count-1;
 
         }
 
@@ -120,5 +107,9 @@ namespace WPFMultiImage
                 this.Current = 0;
         }
 
+        public string WhereAmI()
+        {
+            return (this.Current + 1).ToString() + " of " + this.FileList.Count.ToString();
+        }
     }//class
 }//namespace

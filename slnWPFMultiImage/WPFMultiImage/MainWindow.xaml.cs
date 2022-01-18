@@ -33,99 +33,47 @@ namespace WPFMultiImage
             ImageGrid.Visibility = Visibility.Hidden;
 
             InitCarousel();
+
+            InitToolbar();
         }
 
         private void InitCarousel()
         {
             Carousel = new();
-            //Carousel.ImagesLoaded = Visibility.Hidden;
             Carousel.FileList = new();
-            Carousel.InitCurrent();
+            Carousel.ZeroCurrent();
             Carousel.Displayed = "";
         }
 
-        //public void DisplayAnImage()
-        //{
-        //    if (ImageGrid.Visibility == Visibility.Hidden)
-        //    {
-        //        ImageIndex = 0;
-        //        DisplayOneImage(ImageIndex);
-        //    }
-        //}
+        private void InitToolbar()
+        {
+            HideShowStats.Content = "Hide";
+            HideShowStats.ToolTip = "Hide Statistics";
+        }
 
-        //public void DisplayOneImage(int i)
-        //{
-        //    FileInfo fi = new FileInfo(FileList[i]);
+        private void lstboxColors_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ListBox lb = sender as ListBox;
 
-        //    this.Title = fi.FullName;
-        //    this.ToolTip = fi.FullName; //So you can see name of file when window minimized
-        //    string ext = fi.Extension;
+            // display the Index and RBGA of the selected color
+            object ci = lb.SelectedItem;
 
-        //    
+            string colores = "";
 
-        //    RefreshImage(fi);
-        //    RefreshStats(fi);
-        //}//DisplayOneImage
+            if (lb.SelectedItem is null)
+                colores = "Click on the list for details!";
+            else
+                colores =
+                "Index: " + lb.SelectedIndex.ToString() +
+                "    Red " + (ci as ColorInfo).Color.R +
+                "    Green " + (ci as ColorInfo).Color.G +
+                "    Blue " + (ci as ColorInfo).Color.B +
+                "    Alpha " + (ci as ColorInfo).Color.A;
+            
+            txtblkRGBNumbers.Content = colores;
+        }
 
-        //public void RefreshStats(FileInfo info)
-        //{
-        //    this.FullName.Content = info.FullName;
-        //    this.CreationTime.Content = info.CreationTime.ToString("F"); //Full datetime longtime
-        //    this.LastWriteTime.Content = info.LastWriteTime.ToString("F");
-        //    this.Size.Content = info.Length.ToString();
-        //}
-
-        //private void RefreshImage(FileInfo info)
-        //{
-        //    BitmapImage bi = new();
-
-        //    bi.BeginInit();
-        //    bi.UriSource = new Uri(info.FullName);
-
-        //    bi.EndInit();
-
-        //    theImg.Source = bi;
-
-        //    //stats
-        //    this.PixelSize.Content = bi.PixelWidth.ToString() + " x " + bi.PixelHeight.ToString();
-        //    this.InchSize.Content = (bi.Width / 96).ToString() + " x " + (bi.Height / 96).ToString();
-        //    this.DPISize.Content = bi.DpiX.ToString() + " x " + bi.DpiY.ToString();
-
-        //    this.PixelFormat.Content = bi.Format.ToString();
-
-        //    if (true) //Gif or tiff
-        //    { //BitmapPalette
-        //    }
-
-        //    List<string> HasMetaData = new List<String>(new string[] { "GIF", "JPG", "PNG", "TIF" });
-        //    if (HasMetaData.Any(x => FileType.Contains(x)))
-        //    {
-        //        try
-        //        {
-        //            BitmapMetadata bmd = new(FileType);
-
-        //            this.metadataApplicationName.Content = bmd.ApplicationName;
-        //            //this.Author.Content = bmd.Author.ToString();
-        //            //this.CameraManufacturer.Content = bmd.CameraManufacturer;
-        //            //this.CameraModel.Content = bmd.CameraModel;
-        //            //this.Comment.Content = bmd.Comment;
-        //            //this.Copyright.Content = bmd.Copyright;
-        //            //this.DateTaken.Content = bmd.DateTaken;
-        //            //this.Format.Content = bmd.Format;
-        //            //this.Keywords.Content = bmd.Format;
-        //            //this.LocationChanged.Content = bmd.Location;
-        //            //this.Rating.Content = bmd.Rating.ToString(); //0 thru 5
-        //            //this.Subject.Content = bmd.Subject;
-        //            //this.metadataTitle.Content = bmd.Title;
-        //        }
-        //        catch //do nothing if codec does not support metadata properly
-        //        {
-
-        //        }
-        //    }
-        //}//RefreshImage
-
-        ////== Menu clicks
+        //== Menu clicks
 
         public void Exit_Click(object sender, RoutedEventArgs e)
         {
@@ -139,42 +87,147 @@ namespace WPFMultiImage
                 Carousel.AddToFileList(FileDialogImage.FileNames);
 
                 DisplayImage();
+
+                WhereAmI.Content = Carousel.WhereAmI(); //More files got loaded even if image doesn't change
             }
         }
 
+        //== Toolbar clicks
+
+        private void Previous_Click(object sender, RoutedEventArgs e)
+        {
+            Carousel.PreviousCurrent();
+            DisplayImage();
+        }
+
+        private void Next_Click(object sender, RoutedEventArgs e)
+        {
+            Carousel.NextCurrent();
+            DisplayImage();
+        }
+
+        private void HideShow_Click(object sender, RoutedEventArgs e)
+        {
+            if ((string)HideShowStats.Content == "Hide")
+            {
+                statsandpalette.Visibility = Visibility.Collapsed;
+                HideShowStats.Content = "Show";
+                HideShowStats.ToolTip = "Show Statistics";
+            }
+            else
+            {
+                statsandpalette.Visibility = Visibility.Visible;
+                HideShowStats.Content = "Hide";
+                HideShowStats.ToolTip = "Hide Statistics";
+            }
+        }
+
+        private void SaveImage_Click(object sender, RoutedEventArgs e)
+        {
+            string File2Save = (string)Carousel.FileList[Carousel.Current];
+
+            if (FileDialogImage.SaveFileDialogImage(Images[File2Save]) == true)
+            {
+                switch (FileDialogImage.ChosenExt)
+                {
+                    case "BMP":
+                        {
+                            SaveBitmaps.BMPSave(FileDialogImage.ChosenFile,Images[File2Save]);
+                            break;
+                        }
+                    case "GIF":
+                        {
+                            SaveBitmaps.GIFSave(FileDialogImage.ChosenFile, Images[File2Save]);
+                            break;
+                        }
+                    case "JPG":
+                        {
+                            SaveBitmaps.JPGSave(FileDialogImage.ChosenFile, Images[File2Save]);
+                            break;
+                        }
+                    case "PNG":
+                        {
+                            SaveBitmaps.PNGSave(FileDialogImage.ChosenFile, Images[File2Save]);
+                            break;
+                        }
+                    case "TIF":
+                        {
+                            SaveBitmaps.TIFSave(FileDialogImage.ChosenFile, Images[File2Save]);
+                            break;
+                        }
+                    default:
+                        break;
+                }//switch
+            }//if savedialog is OK
+
+        }//SaveImage_Click
+
+        private void CloseImage_Click(object sender, RoutedEventArgs e)
+        {
+            string FileWhatGoes = (string)Carousel.FileList[Carousel.Current];
+
+            //Remove current from dictionary
+            Images.Remove(FileWhatGoes);
+
+            //Remove from filelist
+            Carousel.FileList.Remove(FileWhatGoes);
+
+            //Are there any files left? If so go to the next one and display
+            if (Carousel.FileList.Count > 0) 
+            {
+                //Current now points to the NEXT image
+                //If we delete last image move current to 0
+                if (Carousel.Current == Carousel.FileList.Count) //We deleted last one and Current is WRONG
+                    Carousel.ZeroCurrent();
+
+                DisplayImage();
+            }
+            else //If not hide ImageGrid
+            {
+                ImageGrid.Visibility = Visibility.Hidden;
+            }
+        }
+
+       //================================================================================================
+
         private void DisplayImage()
         {
-            string fileinquestion = (string)Carousel.FileList[Carousel.Current];
+            string file2display = (string)Carousel.FileList[Carousel.Current];
 
             //Might already be visible
-            //if (Carousel.ImagesLoaded != Visibility.Visible)
-            //    Carousel.ImagesLoaded = Visibility.Visible;
-
             if (ImageGrid.Visibility == Visibility.Hidden)
                 ImageGrid.Visibility = Visibility.Visible;
 
             //Might already be in the dictionary
-            if (!(Images.ContainsKey(fileinquestion)))
+            if (!(Images.ContainsKey(file2display)))
             {
                 ImagesClass oneImage = new();
-                Images[fileinquestion] = oneImage.LoadImage(fileinquestion); //Lazy loading
+
+                Mouse.OverrideCursor = Cursors.Wait;  //Worry circle?
+                Images[file2display] = oneImage.LoadImage(file2display); //Lazy loading, does not overwrite previous load no err
+                Mouse.OverrideCursor = null;
             }
 
             //Might already be displayed
-            if (Carousel.Displayed != fileinquestion)
+            if (Carousel.Displayed != file2display)
             {
-                RefreshScreen(Images[fileinquestion]);
+                RefreshScreen(Images[file2display]);
                 
-                Carousel.Displayed = fileinquestion;
+                Carousel.Displayed = file2display;     
             }
         }//DisplayImage
 
         private void RefreshScreen(ImagesClass img)
         {
             //Update the xaml
-            
+
+            //Toolbar
+            WhereAmI.Content = Carousel.WhereAmI();
+
+            //Image
             theImg.Source = img.BitmapImage;
 
+            //stats
             FullName.Content = img.FileInfo.FullName;
             CreationTime.Content = img.FileInfo.CreationTime.ToString("F"); //Full datetime longtime
             LastWriteTime.Content = img.FileInfo.LastWriteTime.ToString("F");
@@ -207,9 +260,32 @@ namespace WPFMultiImage
 
                 BitsPerPixel.Content = img.BPP().ToString();
                 Masks.Content = img.Masks();
+            }//Metadata
+
+            //palette
+            img.GetColorList();
+            lstboxColors.ItemsSource = img.ColorList;
+
+            if (img.ColorList.Count > 0)
+            {
+                PaletteCount.Visibility = Visibility.Visible;
+                txtblkRGBNumbers.Visibility = Visibility.Visible;
+                lstboxColors.Visibility = Visibility.Visible;
+
+                PaletteTitle.Content = "Palette";
+                PaletteCount.Content = "Count: " + img.ColorList.Count();
+                txtblkRGBNumbers.Content = "Click on the list for details!";
             }
+            else //no palette
+            {
+                PaletteCount.Visibility = Visibility.Collapsed;
+                txtblkRGBNumbers.Visibility = Visibility.Collapsed;
+                lstboxColors.Visibility = Visibility.Collapsed;
 
-        }
-
+                PaletteTitle.Content = "No Palette";
+            }
+            
+        }//RefreshScreen
+    
     }//class
 }//namespace

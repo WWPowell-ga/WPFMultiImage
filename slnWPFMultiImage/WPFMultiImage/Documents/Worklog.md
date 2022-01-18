@@ -24,11 +24,11 @@ The code in ucMainMenu then should fire code in MainCode. ucMainMenu should have
 File->EXIT works.
 
 ## 2022 Jan 8
-Stubbed in File->Open so I could see the child window I built with a 'child' menu.
-Added WINDOWS to main menu
-Went to study what a WPF FileOpenDialog looks like - I've done WinForms and assume this will be similar
-Added ChildWindow, ucChildMenu, ChildCode
-Started coding Open File dialog
+Stubbed in File->Open so I could see the child window I built with a 'child' menu.  
+Added WINDOWS to main menu  
+Went to study what a WPF FileOpenDialog looks like - I've done WinForms and assume this will be similar  
+Added ChildWindow, ucChildMenu, ChildCode  
+Started coding Open File dialog  
 
 ## 2022 Jan 9
 Open File Dialog working
@@ -45,31 +45,42 @@ I'll keep it for now and explore some better alternatives later
 
 ## 2022 Jan 10
 Scrollviewer and Img are more co-operative. Statistics grid has better spacing. SO many options in WPF.  
-Statistics from bitmap as well as file
-Started breaking down the bitmap metadata
-Started minimizing, maximizing, normalizing, and closing all windows.  
-Extent of child area of main window is wrong!
+Statistics from bitmap as well as file  
+Started breaking down the bitmap metadata  
+Started minimizing, maximizing, normalizing, and closing all windows.    
+Extent of child area of main window is wrong!  
 
 ## 2022 Jan 11
-I'm starting to write Windows inside a window inside a window - messy.
-Also the MDI 'style' is shunned these days. Who knew. The hazards of being old...
-Going to start moving to a Navigation-style window I think.
+I'm starting to write Windows inside a window inside a window - messy.  
+Also the MDI 'style' is shunned these days. Who knew. The hazards of being old...  
+Going to start moving to a Navigation-style window I think.  
 
 ## 2022 Jan 12
 
 ## 2022 Jan 13
-Created robust ImagesClass
-Started creating CarouselClass
+Created robust ImagesClass  
+Started creating CarouselClass  
 
 ## 2022 Jan 14
-Getting closer
-BitmapImage is not being returned??? Maybe should be BitmapSource???
+Getting closer  
+BitmapImage is not being returned??? Maybe should be BitmapSource???  
 
 ## 2022 Jan 15
-Stupid bug with BitmapImage fixed
-ImageGrid displaying images
-Stats complete but not Palette
-Not System.Windows.Media.PixelFormats contains good info but is deep.
-I'll have to write a BIG switch to support it. Later.
+Stupid bug with BitmapImage fixed  
+ImageGrid displaying images  
+Stats complete but not Palette  
+Note System.Windows.Media.PixelFormats contains good info but is deep.  
+I'll have to write a BIG switch to support it. Later. 
+Toolbar added  
+I can move to next/previous image  
+I can show/hide stats  
+I can close an image  
+
+## 2022 Jan 16
+Started save image and that works    
+Cleaned up palette info  
+
+## 2022 Jan 17
+Final testing and alpha release  
 
 

@@ -56,6 +56,22 @@ namespace WPFMultiImage
             }
         }
 
+        private int _savefilterindex;
+        public int SaveFilterIndex
+        {
+            get
+            {
+                return _savefilterindex;
+            }
+            set
+            {
+                if (value != _savefilterindex)
+                {
+                    _savefilterindex = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
         private BitmapImage _bitmapimage;
         public BitmapImage BitmapImage
         {
@@ -110,6 +126,8 @@ namespace WPFMultiImage
             }
         }
 
+        //==================================================================================================================================
+
         public string PixelSize()
         {
             return this.BitmapImage.PixelWidth.ToString() + " x " + this.BitmapImage.PixelHeight.ToString();
@@ -134,7 +152,7 @@ namespace WPFMultiImage
         {
             // from Microsoft PixelFormat Struct Reference
 
-            String stringOfValues = " ";
+            String stringOfValues = "";
 
             IList<PixelFormatChannelMask> myChannelMaskCollection = this.BitmapImage.Format.Masks;
 
@@ -147,7 +165,7 @@ namespace WPFMultiImage
                 }
             }
 
-            return stringOfValues.Substring(0,stringOfValues.Length-1); //nuke last comma
+            return stringOfValues.Substring(0, stringOfValues.Length - 1); //nuke last comma
 
         }
 
@@ -157,7 +175,7 @@ namespace WPFMultiImage
             {
                 return this.BitmapMetadata.ApplicationName;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 if (ex is NotSupportedException)
                     return "<not supported>";
@@ -179,7 +197,7 @@ namespace WPFMultiImage
                     foreach (string s in BitmapMetadata.Author)
                         a = a + s + ",";
 
-                    return a.Substring(0,a.Length - 1); //nuke last comma
+                    return a.Substring(0, a.Length - 1); //nuke last comma
                 }
             }
             catch (Exception ex)
@@ -195,7 +213,7 @@ namespace WPFMultiImage
         {
             try
             {
-                return this.BitmapMetadata.CameraManufacturer; 
+                return this.BitmapMetadata.CameraManufacturer;
             }
             catch (Exception ex)
             {
@@ -371,6 +389,7 @@ namespace WPFMultiImage
         {
             FileInfo = GetFileInfo(file);
             FileType = GetFileType(this.FileInfo.Extension);
+            SaveFilterIndex = GetSaveFilterIndex(this.FileInfo.Extension);
             BitmapImage = GetBitmapImage(this.FileInfo);
             BitmapPalette = GetBitmapPalette(this.BitmapImage, this.FileType);
             BitmapMetadata = GetBitmapMetadata(this.BitmapImage, this.FileType);
@@ -410,6 +429,34 @@ namespace WPFMultiImage
                 return ft;
             }//GetFileType
 
+            int GetSaveFilterIndex(string ext)
+            {
+                //.ico has no encoder?
+
+                int sfi = 1;
+
+                switch (ext)
+                {
+                    case ".bmp":
+                        sfi = 1; break;
+                    case ".gif":
+                        sfi = 2; break;
+                    case ".jpg":
+                    case ".jpeg":
+                        sfi = 3; break;
+                    case ".png":
+                        sfi = 4; break;
+                    case ".tif":
+                    case ".tiff":
+                        sfi = 5; break;
+                    default:
+                        sfi = -1; //This is a programmer error!
+                        break;
+                }
+
+                return sfi;
+            }//GetSaveFilterType
+
             BitmapImage GetBitmapImage(FileInfo fi)
             {
                 BitmapImage bi = new BitmapImage(new Uri(fi.FullName));
@@ -423,7 +470,7 @@ namespace WPFMultiImage
 
                 if ((ft == "GIF") || (ft == "TIF"))
                 {
-                    bp = new BitmapPalette(bi, Int32.MaxValue);
+                    bp = new BitmapPalette(bi, 256); //What should second arg be??
                 }
 
                 return bp;
@@ -449,5 +496,45 @@ namespace WPFMultiImage
             }//GetBitmapMetadata
         }//LoadImage
 
-    }//class
+        public List<ColorInfo> ColorList; //= new List<ColorInfo>();
+
+        public void GetColorList()
+        {
+            ColorList = new List<ColorInfo>();
+
+            if (!(BitmapPalette is null))
+            {
+                for (int i = 0; i < BitmapPalette.Colors.Count; i++)
+                {
+                    ColorInfo ci = new ColorInfo(BitmapPalette.Colors[i]);
+                    ColorList.Add(ci);
+                }
+            }
+        }
+
+
+    }//ImageClass
+
+    //== For palette list box
+    public class ColorInfo
+    {
+        public Color Color { get; set; }
+
+        public SolidColorBrush SampleBrush
+        {
+            get { return new SolidColorBrush(Color); }
+        }
+
+        public string HexValue
+        {
+            get { return Color.ToString(); }
+        }
+
+        public ColorInfo(Color color)
+        {
+            Color = color;
+        }
+
+    }//ColorInfo
+
 }//namespace
