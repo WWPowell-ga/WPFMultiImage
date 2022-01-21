@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.IO;
+using System.Reflection;
+using System.Resources;
 using System.Windows;
 
 using Microsoft.Win32;
@@ -13,6 +15,8 @@ namespace WPFMultiImage
 {
     public static class FileDialogImage
     {
+        static ResourceManager rm = new ResourceManager("WPFMultiImage.Properties.Resources", Assembly.GetExecutingAssembly());
+
         public static string[] FileNames; //Array of files just selected in Open
 
         public static string ChosenFile; //Filename chosen in save
@@ -27,9 +31,10 @@ namespace WPFMultiImage
             ofd.CheckPathExists = true;
             ofd.Filter = "All Files (*.*)|*.*|Image Files (*.bmp;*.gif;*.ico;*.jpeg;*.jpg;*.png;*.tif;*.tiff)|*.bmp;*.gif;*.ico;*.jpeg;*.jpg;*.png,*.tif;*.tiff";
             ofd.Multiselect = true;
-            ofd.Title = "Open Image Files";
-            Window dialogPositioningWindow = PositionFileDialogWindow();
+            ofd.Title = "Open Image Files";   
+            ofd.Title = rm.GetString("OpenImageFiles");
 
+            Window dialogPositioningWindow = PositionFileDialogWindow();
             if (ofd.ShowDialog() == true)
             {
                 FileNames = ofd.FileNames;
@@ -77,7 +82,7 @@ namespace WPFMultiImage
             bool retval = false;
 
             SaveFileDialog sfd = new();
-            sfd.Title = "Save Image File";
+            sfd.Title = rm.GetString("SaveImageFile");
 
             string fullname = i.FileInfo.FullName;
             string pathonly = Path.GetDirectoryName(fullname);
