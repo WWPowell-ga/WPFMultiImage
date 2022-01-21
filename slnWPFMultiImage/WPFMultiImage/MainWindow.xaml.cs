@@ -95,6 +95,12 @@ namespace WPFMultiImage
             }
         }
 
+        private void About_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO: Replace About placeholder text with proper explanation
+            MessageBox.Show("Placeholder About Text", "Placeholder About Title");
+        }
+
         //== Toolbar clicks
 
         private void Previous_Click(object sender, RoutedEventArgs e)

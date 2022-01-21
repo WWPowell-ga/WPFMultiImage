@@ -17,6 +17,7 @@
         <Menu Name="MainMenu" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" >
             <MenuItem Header="_File">
                 <MenuItem Header="_Open" Click="Open_Click" />
+                <MenuItem Header="_About" Click="About_Click" />
                 <Separator />
                 <MenuItem Header="_Exit" Click="Exit_Click" />
             </MenuItem>
