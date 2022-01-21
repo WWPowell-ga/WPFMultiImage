@@ -82,5 +82,24 @@ Cleaned up palette info
 
 ## 2022 Jan 17
 Final testing and alpha release  
+Worked on RoadmapBeta  
+
+## 2022 Jan 18
+Built resource file to make lang. translation a little easier.
+It's not a full BAML...
+
+## 2022 Jan 19
+
+## 2022 Jan 20
+Tonight is Marshall Westbrook night.  
+
+Marshall sent in a suggestion on the right sidebar resizing I'll try to fix.
+
+*The stats and palette sidebar doesn't adjust according to the window size. This makes viewing the image difficult in a window that isn't maximized.*
+*The workaround that I used is to hide the stats once I am not in a maximized screen.*
+*Maybe the stats and palette sidebar could be ".2*" with a scroll viewer (or something along those lines)?*
+
+He also did a pull request and built an about box. I'll take a quick look and see if I can figure out  
+how to merge.
 
 

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 using System.Collections;
 using System.ComponentModel;
+using System.Reflection;
+using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Windows;
 
@@ -18,6 +20,8 @@ namespace WPFMultiImage
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        ResourceManager rm = new ResourceManager("WPFMultiImage.Properties.Resources", Assembly.GetExecutingAssembly());
 
         private int _current;
         public int Current
@@ -109,7 +113,7 @@ namespace WPFMultiImage
 
         public string WhereAmI()
         {
-            return (this.Current + 1).ToString() + " of " + this.FileList.Count.ToString();
+            return (this.Current + 1).ToString() + " " + rm.GetString("xOFy") + " " + this.FileList.Count.ToString();
         }
     }//class
 }//namespace

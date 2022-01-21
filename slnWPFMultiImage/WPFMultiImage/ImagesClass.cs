@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 using System.ComponentModel;
 using System.IO;
+using System.Reflection;
+using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media;
@@ -21,6 +23,8 @@ namespace WPFMultiImage
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        ResourceManager rm = new ResourceManager("WPFMultiImage.Properties.Resources", Assembly.GetExecutingAssembly());
+        
         private FileInfo _fileinfo;
         public FileInfo FileInfo
         {
@@ -166,7 +170,6 @@ namespace WPFMultiImage
             }
 
             return stringOfValues.Substring(0, stringOfValues.Length - 1); //nuke last comma
-
         }
 
         public string ApplicationName()
@@ -178,7 +181,7 @@ namespace WPFMultiImage
             catch (Exception ex)
             {
                 if (ex is NotSupportedException)
-                    return "<not supported>";
+                    return rm.GetString("NotSupported");
                 else
                     throw;
             }
@@ -203,7 +206,7 @@ namespace WPFMultiImage
             catch (Exception ex)
             {
                 if (ex is NotSupportedException)
-                    return "<not supported>";
+                    return rm.GetString("NotSupported");
                 else
                     throw;
             }
@@ -218,7 +221,7 @@ namespace WPFMultiImage
             catch (Exception ex)
             {
                 if (ex is NotSupportedException)
-                    return "<not supported>";
+                    return rm.GetString("NotSupported");
                 else
                     throw;
             }
@@ -233,7 +236,7 @@ namespace WPFMultiImage
             catch (Exception ex)
             {
                 if (ex is NotSupportedException)
-                    return "<not supported>";
+                    return rm.GetString("NotSupported");
                 else
                     throw;
             }
@@ -248,7 +251,7 @@ namespace WPFMultiImage
             catch (Exception ex)
             {
                 if (ex is NotSupportedException)
-                    return "<not supported>";
+                    return rm.GetString("NotSupported");
                 else
                     throw;
             }
@@ -263,7 +266,7 @@ namespace WPFMultiImage
             catch (Exception ex)
             {
                 if (ex is NotSupportedException)
-                    return "<not supported>";
+                    return rm.GetString("NotSupported");
                 else
                     throw;
             }
@@ -278,7 +281,7 @@ namespace WPFMultiImage
             catch (Exception ex)
             {
                 if (ex is NotSupportedException)
-                    return "<not supported>";
+                    return rm.GetString("NotSupported");
                 else
                     throw;
             }
@@ -293,7 +296,7 @@ namespace WPFMultiImage
             catch (Exception ex)
             {
                 if (ex is NotSupportedException)
-                    return "<not supported>";
+                    return rm.GetString("NotSupported");
                 else
                     throw;
             }
@@ -317,7 +320,7 @@ namespace WPFMultiImage
             catch (Exception ex)
             {
                 if (ex is NotSupportedException)
-                    return "<not supported>";
+                    return rm.GetString("NotSupported");
                 else
                     throw;
             }
@@ -332,7 +335,7 @@ namespace WPFMultiImage
             catch (Exception ex)
             {
                 if (ex is NotSupportedException)
-                    return "<not supported>";
+                    return rm.GetString("NotSupported");
                 else
                     throw;
             }
@@ -362,7 +365,7 @@ namespace WPFMultiImage
             catch (Exception ex)
             {
                 if (ex is NotSupportedException)
-                    return "<not supported>";
+                    return rm.GetString("NotSupported");
                 else
                     throw;
             }
@@ -377,7 +380,7 @@ namespace WPFMultiImage
             catch (Exception ex)
             {
                 if (ex is NotSupportedException)
-                    return "<not supported>";
+                    return rm.GetString("NotSupported");
                 else
                     throw;
             }

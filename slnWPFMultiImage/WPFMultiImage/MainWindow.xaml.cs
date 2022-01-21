@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using System.IO;
+using System.Reflection;
+using System.Resources;
 
 namespace WPFMultiImage
 {
@@ -24,6 +26,7 @@ namespace WPFMultiImage
     {
         public CarouselClass Carousel { get; set; }
         public Dictionary<string,ImagesClass> Images = new Dictionary<string, ImagesClass>();
+        ResourceManager rm = new ResourceManager("WPFMultiImage.Properties.Resources", Assembly.GetExecutingAssembly());
 
         public MainWindow()
         {
@@ -47,8 +50,8 @@ namespace WPFMultiImage
 
         private void InitToolbar()
         {
-            HideShowStats.Content = "Hide";
-            HideShowStats.ToolTip = "Hide Statistics";
+            HideShowStats.Content = rm.GetString("HideBtn");
+            HideShowStats.ToolTip = rm.GetString("HideBtnTooltip");
         }
 
         private void lstboxColors_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -61,7 +64,7 @@ namespace WPFMultiImage
             string colores = "";
 
             if (lb.SelectedItem is null)
-                colores = "Click on the list for details!";
+                colores = rm.GetString("lstClickOnForDetails");
             else
                 colores =
                 "Index: " + lb.SelectedIndex.ToString() +
@@ -108,17 +111,17 @@ namespace WPFMultiImage
 
         private void HideShow_Click(object sender, RoutedEventArgs e)
         {
-            if ((string)HideShowStats.Content == "Hide")
+            if ((string)HideShowStats.Content == rm.GetString("HideBtn"))
             {
                 statsandpalette.Visibility = Visibility.Collapsed;
-                HideShowStats.Content = "Show";
-                HideShowStats.ToolTip = "Show Statistics";
+                HideShowStats.Content = rm.GetString("ShowBtn");
+                HideShowStats.ToolTip = rm.GetString("ShowBtnTooltip");
             }
             else
             {
                 statsandpalette.Visibility = Visibility.Visible;
-                HideShowStats.Content = "Hide";
-                HideShowStats.ToolTip = "Hide Statistics";
+                HideShowStats.Content = rm.GetString("HideBtn");
+                HideShowStats.ToolTip = rm.GetString("HideBtnTooltip");
             }
         }
 
@@ -253,7 +256,7 @@ namespace WPFMultiImage
                 Location.Content = img.Location();
 
                 int rating = img.Rating();
-                Rating.Content = (rating == -1) ? "<not supported>" : img.Rating().ToString(); //0 thru 5
+                Rating.Content = (rating == -1) ? rm.GetString("NotSupported") : img.Rating().ToString(); //0 thru 5
 
                 Subject.Content = img.Subject();
                 metadataTitle.Content = img.metadataTitle();
@@ -272,9 +275,9 @@ namespace WPFMultiImage
                 txtblkRGBNumbers.Visibility = Visibility.Visible;
                 lstboxColors.Visibility = Visibility.Visible;
 
-                PaletteTitle.Content = "Palette";
-                PaletteCount.Content = "Count: " + img.ColorList.Count();
-                txtblkRGBNumbers.Content = "Click on the list for details!";
+                PaletteTitle.Content = rm.GetString("PaletteTitle");
+                PaletteCount.Content = rm.GetString("PaletteCount") + " " +img.ColorList.Count();
+                txtblkRGBNumbers.Content = rm.GetString("lstClickOnForDetails");
             }
             else //no palette
             {
@@ -282,7 +285,7 @@ namespace WPFMultiImage
                 txtblkRGBNumbers.Visibility = Visibility.Collapsed;
                 lstboxColors.Visibility = Visibility.Collapsed;
 
-                PaletteTitle.Content = "No Palette";
+                PaletteTitle.Content = rm.GetString("NoPaletteTitle");
             }
             
         }//RefreshScreen
