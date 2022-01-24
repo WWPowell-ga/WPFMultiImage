@@ -67,11 +67,11 @@ namespace WPFMultiImage
                 colores = rm.GetString("lstClickOnForDetails");
             else
                 colores =
-                "Index: " + lb.SelectedIndex.ToString() +
-                "    Red " + (ci as ColorInfo).Color.R +
-                "    Green " + (ci as ColorInfo).Color.G +
-                "    Blue " + (ci as ColorInfo).Color.B +
-                "    Alpha " + (ci as ColorInfo).Color.A;
+                rm.GetString("Index") + " " + lb.SelectedIndex.ToString() + "    " +
+                rm.GetString("Red") + " " + (ci as ColorInfo).Color.R + "    " +
+                rm.GetString("Green") + " " + (ci as ColorInfo).Color.G + "    " +
+                rm.GetString("Blue") + " " + (ci as ColorInfo).Color.B + "    " +
+                rm.GetString("Alpha") + " " + (ci as ColorInfo).Color.A;
             
             txtblkRGBNumbers.Content = colores;
         }
@@ -97,8 +97,8 @@ namespace WPFMultiImage
 
         private void About_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Replace About placeholder text with proper explanation
-            MessageBox.Show("Placeholder About Text", "Placeholder About Title");
+            About wind = new();
+            wind.ShowDialog();
         }
 
         //== Toolbar clicks

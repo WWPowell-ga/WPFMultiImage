@@ -6,7 +6,7 @@ New Roadmap seems wise
 A. Wonder if .PCX could be added - read if not write perhaps  
 [Used to work at ZSoft so it's one for my homies]  
 B. International support [move all strings to a resource file - is that how it's done?]  
-C. Save a 'scenario' [basically a lsit of loaded image files; dump the dictionary] - JSON?  
+C. Save a 'scenario' [basically a list of loaded image files; dump the dictionary] - JSON?  
 D. Reopen a 'scenario'  
 E. Error hdling????? Probably doesn't need logging per se.  
 F. Help system ... from user guide?  
@@ -23,5 +23,6 @@ Seems like it should do one more thing really well.
 Multi-image GIF/TIF?  
 JPEG compression?  
 Palette smashing?  
-Metadata editing?  
+Metadata editing? 
+Palette sorting? Is that even useful?
 

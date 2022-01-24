@@ -134,17 +134,17 @@ namespace WPFMultiImage
 
         public string PixelSize()
         {
-            return this.BitmapImage.PixelWidth.ToString() + " x " + this.BitmapImage.PixelHeight.ToString();
+            return this.BitmapImage.PixelWidth.ToString() + " " + rm.GetString("x") + " " + this.BitmapImage.PixelHeight.ToString();
         }
 
         public string InchSize()
         {
-            return (this.BitmapImage.Width / 96).ToString() + " x " + (this.BitmapImage.Height / 96).ToString();
+            return (this.BitmapImage.Width / 96).ToString() + " " + rm.GetString("x") + " " + (this.BitmapImage.Height / 96).ToString();
         }
 
         public string DPISize()
         {
-            return this.BitmapImage.DpiX.ToString() + " x " + this.BitmapImage.DpiY.ToString();
+            return this.BitmapImage.DpiX.ToString() + " " + rm.GetString("x") + " " + this.BitmapImage.DpiY.ToString();
         }
 
         public int BPP()

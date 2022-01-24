@@ -29,7 +29,7 @@ namespace WPFMultiImage
             OpenFileDialog ofd = new();
             ofd.CheckFileExists = true;
             ofd.CheckPathExists = true;
-            ofd.Filter = "All Files (*.*)|*.*|Image Files (*.bmp;*.gif;*.ico;*.jpeg;*.jpg;*.png;*.tif;*.tiff)|*.bmp;*.gif;*.ico;*.jpeg;*.jpg;*.png,*.tif;*.tiff";
+            ofd.Filter = rm.GetString("ofdFilter");
             ofd.Multiselect = true;
             ofd.Title = rm.GetString("OpenImageFiles");
 
@@ -50,13 +50,13 @@ namespace WPFMultiImage
             SaveFileDialog sfd = new();
             sfd.Title = rm.GetString("SaveImageFile");
 
-            string fullname = i.FileInfo.FullName;
-            string pathonly = Path.GetDirectoryName(fullname);
-            string fnonly = Path.GetFileNameWithoutExtension(fullname);
-            string fndialog = Path.Combine(pathonly,fnonly);
-            sfd.FileName = fndialog;
+            //string fullname = i.FileInfo.;
+            //string pathonly = Path.GetDirectoryName(fullname);
+            //string fnonly = Path.GetFileNameWithoutExtension(fullname);
+            //string fndialog = Path.Combine(pathonly,fnonly);
+            sfd.FileName = i.FileInfo.Name;
             
-            sfd.Filter = "BMP (*.bmp)|*.bmp|GIF (*.gif)|*.gif|JPG (*.jpg)|*.jpg|PNG (*.png)|*.png|TIF (*.tif)|*.tif";
+            sfd.Filter = rm.GetString("sfdFilter");
             sfd.DefaultExt = i.FileType;
             sfd.FilterIndex = i.SaveFilterIndex;
             sfd.AddExtension = true;

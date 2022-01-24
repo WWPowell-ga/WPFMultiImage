@@ -102,4 +102,31 @@ Marshall sent in a suggestion on the right sidebar resizing I'll try to fix.
 He also did a pull request and built an about box. I'll take a quick look and see if I can figure out  
 how to merge.
 
+## 2022 Jan 21
+Merge worked. Have decided to build my own about box after trying a couple of  
+Nuget packages.
+
+More code suggestions from Marshall Westbrook arrived but I need to finish what I have before  
+tackling those.
+
+About Box completed though it is plain.
+
+#2022 Jan 22
+Completed moving text strings to resource file.  
+That's all I'll do for internationalization.  
+
+The right sidebar is what it is. Every thing else I tried just looks wrong.  
+
+I wonder if palette sorting is at all useful? Adding it to RoadmapBeta  
+
+#2022 Jan 23
+Marshall Westbrook emailed
+
+*When saving images on my computer I noticed that the default name for files is the full containing folder's path (in addition to the original image's name).*
+*Save File Dialog opens in the correct directory, but the file name it's attempting to save as is the full directory.*
+*Current Behavior: Saving as file name "C:\Programming\WPFMultiImage\slnWPFMultiImage\WPFMultiImage\bin\Debug\net5.0-windows\Capture.tif"*
+*Expected Behavior: Saving as file name "Capture.tif"*
+
+So I fixed it.
+
 

@@ -5,6 +5,9 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <StartupObject>WPFMultiImage.App</StartupObject>
+    <Description>A multiple image viewer with statistics</Description>
+    <Authors>William W. Powell</Authors>
+    <Product />
   </PropertyGroup>
 
   <ItemGroup>

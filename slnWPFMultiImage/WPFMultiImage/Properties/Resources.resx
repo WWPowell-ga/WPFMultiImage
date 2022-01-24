@@ -117,9 +117,45 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutBoxWindowTitle" xml:space="preserve">
+    <value>About</value>
+    <comment>About.xaml.cs</comment>
+  </data>
+  <data name="AboutBy" xml:space="preserve">
+    <value>By:</value>
+    <comment>About.xaml.cs</comment>
+  </data>
+  <data name="Alpha" xml:space="preserve">
+    <value>Alpha:</value>
+    <comment>Above palette listbox</comment>
+  </data>
+  <data name="BitsPerPixel" xml:space="preserve">
+    <value>Bits Per Pixel:</value>
+    <comment>Stats</comment>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>Blue:</value>
+    <comment>Above palette listbox</comment>
+  </data>
+  <data name="fiCreationTime" xml:space="preserve">
+    <value>Creation Time:</value>
+    <comment>Stats</comment>
+  </data>
   <data name="fiFullName" xml:space="preserve">
     <value>Full Name:</value>
     <comment>Label for FileInfo.FullName</comment>
+  </data>
+  <data name="fiLastWriteTime" xml:space="preserve">
+    <value>Last Write Time:</value>
+    <comment>Stats</comment>
+  </data>
+  <data name="fiSizeInBytes" xml:space="preserve">
+    <value>Size In Bytes:</value>
+    <comment>Stats</comment>
+  </data>
+  <data name="Green" xml:space="preserve">
+    <value>Green:</value>
+    <comment>Above palette listbox</comment>
   </data>
   <data name="HideBtn" xml:space="preserve">
     <value>Hide</value>
@@ -129,12 +165,73 @@
     <value>Hide Statistics</value>
     <comment>On Toolbar</comment>
   </data>
+  <data name="Index" xml:space="preserve">
+    <value>Index:</value>
+    <comment>Above palette listbox</comment>
+  </data>
   <data name="lstClickOnForDetails" xml:space="preserve">
     <value>Click on list for details!</value>
     <comment>Above palette listbox</comment>
   </data>
   <data name="MainWindowTitle" xml:space="preserve">
-    <value>WPFMultiWindow</value>
+    <value>WPFMultiImage</value>
+    <comment>MainWindow.xaml</comment>
+  </data>
+  <data name="Masks" xml:space="preserve">
+    <value>Masks:</value>
+    <comment>Stats</comment>
+  </data>
+  <data name="mdApplicationName" xml:space="preserve">
+    <value>Application Name:</value>
+    <comment>metadata</comment>
+  </data>
+  <data name="mdAuthor" xml:space="preserve">
+    <value>Author:</value>
+    <comment>metadata</comment>
+  </data>
+  <data name="mdCameraManufacturer" xml:space="preserve">
+    <value>Camera Manufacturer:</value>
+    <comment>metadata</comment>
+  </data>
+  <data name="mdCameraModel" xml:space="preserve">
+    <value>Camera Model:</value>
+    <comment>metadata</comment>
+  </data>
+  <data name="mdComment" xml:space="preserve">
+    <value>Comment:</value>
+    <comment>metadata</comment>
+  </data>
+  <data name="mdCopyright" xml:space="preserve">
+    <value>Copyright:</value>
+    <comment>metadata</comment>
+  </data>
+  <data name="mdDateTaken" xml:space="preserve">
+    <value>Date Taken:</value>
+    <comment>metadata</comment>
+  </data>
+  <data name="mdFormat" xml:space="preserve">
+    <value>Format:</value>
+    <comment>metadata</comment>
+  </data>
+  <data name="mdKeywords" xml:space="preserve">
+    <value>Keywords:</value>
+    <comment>metadata</comment>
+  </data>
+  <data name="mdLocation" xml:space="preserve">
+    <value>Location:</value>
+    <comment>metadata</comment>
+  </data>
+  <data name="mdRating" xml:space="preserve">
+    <value>Rating:</value>
+    <comment>metadata</comment>
+  </data>
+  <data name="mdSubject" xml:space="preserve">
+    <value>Subject:</value>
+    <comment>metadata</comment>
+  </data>
+  <data name="mdTitle" xml:space="preserve">
+    <value>Title:</value>
+    <comment>metadata</comment>
   </data>
   <data name="NoPaletteTitle" xml:space="preserve">
     <value>No Palette</value>
@@ -143,6 +240,10 @@
   <data name="NotSupported" xml:space="preserve">
     <value>&lt;not supported&gt;</value>
     <comment>Metadata</comment>
+  </data>
+  <data name="ofdFilter" xml:space="preserve">
+    <value>All Files (*.*)|*.*|Image Files (*.bmp;*.gif;*.ico;*.jpeg;*.jpg;*.png;*.tif;*.tiff)|*.bmp;*.gif;*.ico;*.jpeg;*.jpg;*.png,*.tif;*.tiff"</value>
+    <comment>Open File Dialog</comment>
   </data>
   <data name="OpenImageFiles" xml:space="preserve">
     <value>Open Image Files</value>
@@ -156,9 +257,21 @@
     <value>Palette</value>
     <comment>Above palette listbox</comment>
   </data>
+  <data name="PixelFormat" xml:space="preserve">
+    <value>Pixel Format:</value>
+    <comment>Stats</comment>
+  </data>
+  <data name="Red" xml:space="preserve">
+    <value>Red:</value>
+    <comment>Above palette listbox</comment>
+  </data>
   <data name="SaveImageFile" xml:space="preserve">
     <value>Save Image File</value>
     <comment>FileDialog</comment>
+  </data>
+  <data name="sfdFilter" xml:space="preserve">
+    <value>BMP (*.bmp)|*.bmp|GIF (*.gif)|*.gif|JPG (*.jpg)|*.jpg|PNG (*.png)|*.png|TIF (*.tif)|*.tif</value>
+    <comment>Save File Dialog</comment>
   </data>
   <data name="ShowBtn" xml:space="preserve">
     <value>Show</value>
@@ -167,6 +280,22 @@
   <data name="ShowBtnTooltip" xml:space="preserve">
     <value>Show Statistics</value>
     <comment>On Toolbar</comment>
+  </data>
+  <data name="SizeInDPI" xml:space="preserve">
+    <value>Size in DPI:</value>
+    <comment>Stats</comment>
+  </data>
+  <data name="SizeInInches" xml:space="preserve">
+    <value>Size In Inches:</value>
+    <comment>Stats</comment>
+  </data>
+  <data name="SizeInPixels" xml:space="preserve">
+    <value>Size In Pixels:</value>
+    <comment>Stats</comment>
+  </data>
+  <data name="x" xml:space="preserve">
+    <value>x</value>
+    <comment>Stats [eg 96 x 96]</comment>
   </data>
   <data name="xOFy" xml:space="preserve">
     <value>of</value>

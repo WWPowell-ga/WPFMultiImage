@@ -61,11 +61,92 @@ namespace WPFMultiImage.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string AboutBoxWindowTitle {
+            get {
+                return ResourceManager.GetString("AboutBoxWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By:.
+        /// </summary>
+        public static string AboutBy {
+            get {
+                return ResourceManager.GetString("AboutBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alpha:.
+        /// </summary>
+        public static string Alpha {
+            get {
+                return ResourceManager.GetString("Alpha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bits Per Pixel:.
+        /// </summary>
+        public static string BitsPerPixel {
+            get {
+                return ResourceManager.GetString("BitsPerPixel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blue:.
+        /// </summary>
+        public static string Blue {
+            get {
+                return ResourceManager.GetString("Blue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Creation Time:.
+        /// </summary>
+        public static string fiCreationTime {
+            get {
+                return ResourceManager.GetString("fiCreationTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Full Name:.
         /// </summary>
         public static string fiFullName {
             get {
                 return ResourceManager.GetString("fiFullName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Write Time:.
+        /// </summary>
+        public static string fiLastWriteTime {
+            get {
+                return ResourceManager.GetString("fiLastWriteTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size In Bytes:.
+        /// </summary>
+        public static string fiSizeInBytes {
+            get {
+                return ResourceManager.GetString("fiSizeInBytes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Green:.
+        /// </summary>
+        public static string Green {
+            get {
+                return ResourceManager.GetString("Green", resourceCulture);
             }
         }
         
@@ -88,6 +169,15 @@ namespace WPFMultiImage.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Index:.
+        /// </summary>
+        public static string Index {
+            get {
+                return ResourceManager.GetString("Index", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Click on list for details!.
         /// </summary>
         public static string lstClickOnForDetails {
@@ -97,11 +187,137 @@ namespace WPFMultiImage.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to WPFMultiWindow.
+        ///   Looks up a localized string similar to WPFMultiImage.
         /// </summary>
         public static string MainWindowTitle {
             get {
                 return ResourceManager.GetString("MainWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Masks:.
+        /// </summary>
+        public static string Masks {
+            get {
+                return ResourceManager.GetString("Masks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Application Name:.
+        /// </summary>
+        public static string mdApplicationName {
+            get {
+                return ResourceManager.GetString("mdApplicationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Author:.
+        /// </summary>
+        public static string mdAuthor {
+            get {
+                return ResourceManager.GetString("mdAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Camera Manufacturer:.
+        /// </summary>
+        public static string mdCameraManufacturer {
+            get {
+                return ResourceManager.GetString("mdCameraManufacturer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Camera Model:.
+        /// </summary>
+        public static string mdCameraModel {
+            get {
+                return ResourceManager.GetString("mdCameraModel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comment:.
+        /// </summary>
+        public static string mdComment {
+            get {
+                return ResourceManager.GetString("mdComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copyright:.
+        /// </summary>
+        public static string mdCopyright {
+            get {
+                return ResourceManager.GetString("mdCopyright", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date Taken:.
+        /// </summary>
+        public static string mdDateTaken {
+            get {
+                return ResourceManager.GetString("mdDateTaken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Format:.
+        /// </summary>
+        public static string mdFormat {
+            get {
+                return ResourceManager.GetString("mdFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keywords:.
+        /// </summary>
+        public static string mdKeywords {
+            get {
+                return ResourceManager.GetString("mdKeywords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Location:.
+        /// </summary>
+        public static string mdLocation {
+            get {
+                return ResourceManager.GetString("mdLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rating:.
+        /// </summary>
+        public static string mdRating {
+            get {
+                return ResourceManager.GetString("mdRating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subject:.
+        /// </summary>
+        public static string mdSubject {
+            get {
+                return ResourceManager.GetString("mdSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title:.
+        /// </summary>
+        public static string mdTitle {
+            get {
+                return ResourceManager.GetString("mdTitle", resourceCulture);
             }
         }
         
@@ -120,6 +336,15 @@ namespace WPFMultiImage.Properties {
         public static string NotSupported {
             get {
                 return ResourceManager.GetString("NotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All Files (*.*)|*.*|Image Files (*.bmp;*.gif;*.ico;*.jpeg;*.jpg;*.png;*.tif;*.tiff)|*.bmp;*.gif;*.ico;*.jpeg;*.jpg;*.png,*.tif;*.tiff&quot;.
+        /// </summary>
+        public static string ofdFilter {
+            get {
+                return ResourceManager.GetString("ofdFilter", resourceCulture);
             }
         }
         
@@ -151,11 +376,38 @@ namespace WPFMultiImage.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pixel Format:.
+        /// </summary>
+        public static string PixelFormat {
+            get {
+                return ResourceManager.GetString("PixelFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Red:.
+        /// </summary>
+        public static string Red {
+            get {
+                return ResourceManager.GetString("Red", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save Image File.
         /// </summary>
         public static string SaveImageFile {
             get {
                 return ResourceManager.GetString("SaveImageFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BMP (*.bmp)|*.bmp|GIF (*.gif)|*.gif|JPG (*.jpg)|*.jpg|PNG (*.png)|*.png|TIF (*.tif)|*.tif.
+        /// </summary>
+        public static string sfdFilter {
+            get {
+                return ResourceManager.GetString("sfdFilter", resourceCulture);
             }
         }
         
@@ -174,6 +426,42 @@ namespace WPFMultiImage.Properties {
         public static string ShowBtnTooltip {
             get {
                 return ResourceManager.GetString("ShowBtnTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size in DPI:.
+        /// </summary>
+        public static string SizeInDPI {
+            get {
+                return ResourceManager.GetString("SizeInDPI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size In Inches:.
+        /// </summary>
+        public static string SizeInInches {
+            get {
+                return ResourceManager.GetString("SizeInInches", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size In Pixels:.
+        /// </summary>
+        public static string SizeInPixels {
+            get {
+                return ResourceManager.GetString("SizeInPixels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to x.
+        /// </summary>
+        public static string x {
+            get {
+                return ResourceManager.GetString("x", resourceCulture);
             }
         }
         

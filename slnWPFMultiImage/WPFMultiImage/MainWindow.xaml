@@ -64,17 +64,14 @@
             </ScrollViewer>
 
             <!-- Stats & Palette-->
-            <ScrollViewer Name="statsandpalette" Grid.Column="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />                        <!-- stats -->
-                        <RowDefinition Height="Auto" />                        <!-- palette -->
-                        <RowDefinition Height="Auto" />                        <!-- palette -->
-                        <RowDefinition Height="Auto" />                        <!-- palette -->
-                        <RowDefinition Height="*" />                        <!-- palette -->
-                    </Grid.RowDefinitions>
+            <Grid Name ="statsandpalette" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />                    <!-- stats -->
+                    <RowDefinition Height="*" />                    <!-- palette -->
+                </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="0" Name="thestats">
+                <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <Grid Name="thestats">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
                             <ColumnDefinition />
@@ -90,24 +87,24 @@
                             <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
-                            <RowDefinition />
+                            <RowDefinition />                            <!--8-->
+
                             <RowDefinition />                            <!--9-->
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />                            <!--21-->
 
-                            <RowDefinition />                            <!--10-->
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
                             <RowDefinition />                            <!--22-->
-
-                            <RowDefinition />                            <!--23-->
+                            <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />                            <!--25-->
                         </Grid.RowDefinitions>
@@ -115,94 +112,105 @@
                         <Label Grid.Column="0" Grid.Row="0" Content="{x:Static p:Resources.fiFullName}" />
                         <Label Grid.Column="1" Grid.Row="0" Name="FullName" />
 
-                        <Label Grid.Column="0" Grid.Row="1" Content="Creation Time:" />
+                        <Label Grid.Column="0" Grid.Row="1" Content="{x:Static p:Resources.fiCreationTime}" />
                         <Label Grid.Column="1" Grid.Row="1" Name="CreationTime" />
 
-                        <Label Grid.Column="0" Grid.Row="2" Content="Last Write Time:" />
+                        <Label Grid.Column="0" Grid.Row="2" Content="{x:Static p:Resources.fiLastWriteTime}" />
                         <Label Grid.Column="1" Grid.Row="2" Name="LastWriteTime" />
 
-                        <Label Grid.Column="0" Grid.Row="3" Content="Size in bytes:" />
+                        <Label Grid.Column="0" Grid.Row="3" Content="{x:Static p:Resources.fiSizeInBytes}" />
                         <Label Grid.Column="1" Grid.Row="3" Name="Size" />
 
                         <!-- Row 4 intentionally blank -->
                         <Label Grid.Column="0" Grid.Row="4" Content=" " />
                         <Label Grid.Column="1" Grid.Row="4" Content=" " />
 
-                        <Label Grid.Column="0" Grid.Row="5" Content="Size in pixels:" />
+                        <Label Grid.Column="0" Grid.Row="5" Content="{x:Static p:Resources.SizeInPixels}"/>
                         <Label Grid.Column="1" Grid.Row="5" Name="PixelSize" />
 
-                        <Label Grid.Column="0" Grid.Row="6" Content="Size in inches:" />
+                        <Label Grid.Column="0" Grid.Row="6" Content="{x:Static p:Resources.SizeInInches}" />
                         <Label Grid.Column="1" Grid.Row="6" Name="InchSize" />
 
-                        <Label Grid.Column="0" Grid.Row="7" Content="Dots per inch:" />
+                        <Label Grid.Column="0" Grid.Row="7" Content="{x:Static p:Resources.SizeInDPI}" />
                         <Label Grid.Column="1" Grid.Row="7" Name="DPISize" />
 
-                        <Label Grid.Column="0" Grid.Row="8" Content="Format:" />
-                        <Label Grid.Column="1" Grid.Row="8" Name="PixelFormat" />
+                        <!-- Row 8 blank -->
+                        <Label Grid.Column="0" Grid.Row="8" Content=" " />
+                        <Label Grid.Column="1" Grid.Row="8" Content=" " />
 
-                        <!-- Row 9 blank -->
-                        <Label Grid.Column="0" Grid.Row="9" Content=" " />
-                        <Label Grid.Column="1" Grid.Row="9" Content=" " />
+                        <Label Grid.Column="0" Grid.Row="9" Content="{x:Static p:Resources.mdApplicationName}" />
+                        <Label Grid.Column="1" Grid.Row="9" Name="metadataApplicationName" />
 
-                        <Label Grid.Column="0" Grid.Row="10" Content="Application Name:" />
-                        <Label Grid.Column="1" Grid.Row="10" Name="metadataApplicationName" />
+                        <Label Grid.Column="0" Grid.Row="10" Content="{x:Static p:Resources.mdAuthor}" />
+                        <Label Grid.Column="1" Grid.Row="10" Name="Author" />
 
-                        <Label Grid.Column="0" Grid.Row="11" Content="Author:" />
-                        <Label Grid.Column="1" Grid.Row="11" Name="Author" />
+                        <Label Grid.Column="0" Grid.Row="11" Content="{x:Static p:Resources.mdCameraManufacturer}" />
+                        <Label Grid.Column="1" Grid.Row="11" Name="CameraManufacturer" />
 
-                        <Label Grid.Column="0" Grid.Row="12" Content="Camera Manufacturer:" />
-                        <Label Grid.Column="1" Grid.Row="12" Name="CameraManufacturer" />
+                        <Label Grid.Column="0" Grid.Row="12" Content="{x:Static p:Resources.mdCameraModel}" />
+                        <Label Grid.Column="1" Grid.Row="12" Name="CameraModel" />
 
-                        <Label Grid.Column="0" Grid.Row="13" Content="Camera Model:" />
-                        <Label Grid.Column="1" Grid.Row="13" Name="CameraModel" />
+                        <Label Grid.Column="0" Grid.Row="13" Content="{x:Static p:Resources.mdComment}" />
+                        <Label Grid.Column="1" Grid.Row="13" Name="Comment" />
 
-                        <Label Grid.Column="0" Grid.Row="14" Content="Comment:" />
-                        <Label Grid.Column="1" Grid.Row="14" Name="Comment" />
+                        <Label Grid.Column="0" Grid.Row="14" Content="{x:Static p:Resources.mdCopyright}" />
+                        <Label Grid.Column="1" Grid.Row="14" Name="Copyright" />
 
-                        <Label Grid.Column="0" Grid.Row="15" Content="Copyright:" />
-                        <Label Grid.Column="1" Grid.Row="15" Name="Copyright" />
+                        <Label Grid.Column="0" Grid.Row="15" Content="{x:Static p:Resources.mdDateTaken}" />
+                        <Label Grid.Column="1" Grid.Row="15" Name="DateTaken" />
 
-                        <Label Grid.Column="0" Grid.Row="16" Content="Date Taken:" />
-                        <Label Grid.Column="1" Grid.Row="16" Name="DateTaken" />
+                        <Label Grid.Column="0" Grid.Row="16" Content="{x:Static p:Resources.mdFormat}"/>
+                        <Label Grid.Column="1" Grid.Row="16" Name="Format" />
 
-                        <Label Grid.Column="0" Grid.Row="17" Content="Format:" />
-                        <Label Grid.Column="1" Grid.Row="17" Name="Format" />
+                        <Label Grid.Column="0" Grid.Row="17" Content="{x:Static p:Resources.mdKeywords}" />
+                        <Label Grid.Column="1" Grid.Row="17" Name="Keywords" />
 
-                        <Label Grid.Column="0" Grid.Row="18" Content="Keywords:" />
-                        <Label Grid.Column="1" Grid.Row="18" Name="Keywords" />
+                        <Label Grid.Column="0" Grid.Row="18" Content="{x:Static p:Resources.mdLocation}" />
+                        <Label Grid.Column="1" Grid.Row="18" Name="Location" />
 
-                        <Label Grid.Column="0" Grid.Row="19" Content="Location:" />
-                        <Label Grid.Column="1" Grid.Row="19" Name="Location" />
+                        <Label Grid.Column="0" Grid.Row="19" Content="{x:Static p:Resources.mdRating}" />
+                        <Label Grid.Column="1" Grid.Row="19" Name="Rating" />
 
-                        <Label Grid.Column="0" Grid.Row="20" Content="Rating:" />
-                        <Label Grid.Column="1" Grid.Row="20" Name="Rating" />
+                        <Label Grid.Column="0" Grid.Row="20" Content="{x:Static p:Resources.mdSubject}" />
+                        <Label Grid.Column="1" Grid.Row="20" Name="Subject" />
 
-                        <Label Grid.Column="0" Grid.Row="21" Content="Subject:" />
-                        <Label Grid.Column="1" Grid.Row="21" Name="Subject" />
+                        <Label Grid.Column="0" Grid.Row="21" Content="{x:Static p:Resources.mdTitle}" />
+                        <Label Grid.Column="1" Grid.Row="21" Name="metadataTitle" />
 
-                        <Label Grid.Column="0" Grid.Row="22" Content="Title:" />
-                        <Label Grid.Column="1" Grid.Row="22" Name="metadataTitle" />
+                        <!-- Row 22 blank -->
+                        <Label Grid.Column="0" Grid.Row="22" Content=" " />
+                        <Label Grid.Column="1" Grid.Row="22" Content=" " />
 
-                        <!-- Row 23 blank -->
-                        <Label Grid.Column="0" Grid.Row="23" Content=" " />
-                        <Label Grid.Column="1" Grid.Row="23" Content=" " />
+                        <Label Grid.Column="0" Grid.Row="23" Content="{x:Static p:Resources.BitsPerPixel}" />
+                        <Label Grid.Column="1" Grid.Row="23" Name="BitsPerPixel" />
 
-                        <Label Grid.Column="0" Grid.Row="24" Content="Bits Per Pixel:" />
-                        <Label Grid.Column="1" Grid.Row="24" Name="BitsPerPixel" />
+                        <Label Grid.Column="0" Grid.Row="24" Content="{x:Static p:Resources.Masks}" />
+                        <Label Grid.Column="1" Grid.Row="24" Name="Masks" />
 
-                        <Label Grid.Column="0" Grid.Row="25" Content="Masks:" />
-                        <Label Grid.Column="1" Grid.Row="25" Name="Masks" />
+                        <Label Grid.Column="0" Grid.Row="25" Content="{x:Static p:Resources.PixelFormat}" />
+                        <Label Grid.Column="1" Grid.Row="25" Name="PixelFormat" />
 
                     </Grid>                    <!-- stats -->
+                </ScrollViewer>
 
-                    <!-- Palette -->
-                    <Label Name="PaletteTitle" Grid.Row="1"/>
-                    <Label Name="PaletteCount" Grid.Row="2"/>
-                    <Label Name="txtblkRGBNumbers" Grid.Row="3"/>
+                <Grid Grid.Row="1">                    <!-- Palette -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-                    <ListBox Name="lstboxColors" Grid.Row="4" ScrollViewer.CanContentScroll="True"
-                            ScrollViewer.VerticalScrollBarVisibility="Auto"
-                            SelectionChanged="lstboxColors_SelectionChanged">
+                    <Border Grid.Row="0" BorderBrush="Black" BorderThickness="2">
+                        <StackPanel Orientation="Vertical" >
+                            <Label Name="PaletteTitle" />
+                            <Label Name="PaletteCount" />
+                            <Label Name="txtblkRGBNumbers" />
+                        </StackPanel>
+                    </Border>
+
+                    <ListBox Name="lstboxColors" Grid.Row="1"
+                             ScrollViewer.CanContentScroll="True"
+                             ScrollViewer.VerticalScrollBarVisibility="Auto"
+                             SelectionChanged="lstboxColors_SelectionChanged">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
@@ -218,9 +226,9 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
 
-                </Grid>
-            </ScrollViewer>            <!-- stats & palette -->
-        </Grid> <!-- bottom -->
+                </Grid> <!--palette -->
+            </Grid> <!-- stats & palette -->
+        </Grid> <!-- ImageGrid -->
     </Grid> <!-- screen -->
 
 </Window>
