@@ -15,11 +15,15 @@
         </Grid.RowDefinitions>
 
         <Menu Name="MainMenu" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" >
-            <MenuItem Header="_File">
-                <MenuItem Header="_Open" Click="Open_Click" />
-                <MenuItem Header="_About" Click="About_Click" />
+            <MenuItem Header="{x:Static p:Resources.mnuFile}">
+                <MenuItem Header="{x:Static p:Resources.mnuOpen}" Click="Open_Click" />
+                <MenuItem Header="{x:Static p:Resources.mnuAbout}" Click="About_Click" />
                 <Separator />
-                <MenuItem Header="_Exit" Click="Exit_Click" />
+                <MenuItem Header="{x:Static p:Resources.mnuExit}" Click="Exit_Click" />
+            </MenuItem>
+            <MenuItem Header="{x:Static p:Resources.mnuScenario}">
+                <MenuItem Header="{x:Static p:Resources.mnuOpenScenario}" Click="OpenScenario_Click" />
+                <MenuItem Header="{x:Static p:Resources.mnuSaveScenario}" Click="SaveScenario_Click" IsEnabled="{Binding Carousel.ImagesLoaded}"/>
             </MenuItem>
         </Menu>
 
@@ -36,14 +40,17 @@
                     <ToolBar>
                         <Label Name="WhereAmI" />
                         <Separator />
-                        <Button Content="Previous" Click="Previous_Click" ToolTip="Display Previous Image" Margin="5" BorderBrush="Black" BorderThickness="2" />
-                        <Button Content="Next" Click="Next_Click" ToolTip="Display Next Image" Margin="5" BorderBrush="Black" BorderThickness="2" />
+                        <Button Content="{x:Static p:Resources.Previous}" Click="Previous_Click" ToolTip="{x:Static p:Resources.DisplayPreviousImage}" Margin="5" BorderBrush="Black" BorderThickness="2" />
+                        <Button Content="{x:Static p:Resources.Next}" Click="Next_Click" ToolTip="{x:Static p:Resources.DisplayNextImage}" Margin="5" BorderBrush="Black" BorderThickness="2" />
                         <Separator />
                         <Button Name="HideShowStats" Click="HideShow_Click" Margin="5" BorderBrush="Black" BorderThickness="2" />
                         <Separator />
-                        <Button Content="Save Image" Click="SaveImage_Click" Margin="5" BorderBrush="Black" BorderThickness="2" />
+                        <Button Content="{x:Static p:Resources.SaveImage}" Click="SaveImage_Click" ToolTip="{x:Static p:Resources.SaveThisImage}" Margin="5" BorderBrush="Black" BorderThickness="2" />
                         <Separator />
-                        <Button Content="Close Image" Click="CloseImage_Click" ToolTip="Close This Image" Margin="5" BorderBrush="Black" BorderThickness="2"/>
+                        <Button Content="{x:Static p:Resources.Close}" Click="CloseImage_Click" ToolTip="{x:Static p:Resources.CloseThisImage}" Margin="5" BorderBrush="Black" BorderThickness="2" />
+                        <Button Content="{x:Static p:Resources.CloseAll}" Click="CloseAll_Click" ToolTip="{x:Static p:Resources.CloseAllImages}" Margin="5" BorderBrush="Black" BorderThickness="2" />
+                        <Separator />
+                        <Button Content="{x:Static p:Resources.MultiImage}" Click="SaveMultiImage_Click" ToolTip="{x:Static p:Resources.MultiImageTooltip}" Margin="5" BorderBrush="Black" BorderThickness="2"/>
                     </ToolBar>
                 </ToolBarTray>
             </DockPanel>
@@ -106,7 +113,8 @@
                             <RowDefinition />                            <!--22-->
                             <RowDefinition />
                             <RowDefinition />
-                            <RowDefinition />                            <!--25-->
+                            <RowDefinition />                            
+                            <RowDefinition />       <!-- 26 -->
                         </Grid.RowDefinitions>
 
                         <Label Grid.Column="0" Grid.Row="0" Content="{x:Static p:Resources.fiFullName}" />
@@ -189,6 +197,10 @@
 
                         <Label Grid.Column="0" Grid.Row="25" Content="{x:Static p:Resources.PixelFormat}" />
                         <Label Grid.Column="1" Grid.Row="25" Name="PixelFormat" />
+
+                        <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="26" Name="PixelFormatDefinition"
+                                   IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
+                                 MaxWidth="340"/>
 
                     </Grid>                    <!-- stats -->
                 </ScrollViewer>

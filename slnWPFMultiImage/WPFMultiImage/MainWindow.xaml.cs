@@ -24,9 +24,12 @@ namespace WPFMultiImage
     /// </summary>
     public partial class MainWindow : Window
     {
+        ResourceManager rm = new ResourceManager("WPFMultiImage.Properties.Resources", Assembly.GetExecutingAssembly());
+
         public CarouselClass Carousel { get; set; }
         public Dictionary<string,ImagesClass> Images = new Dictionary<string, ImagesClass>();
-        ResourceManager rm = new ResourceManager("WPFMultiImage.Properties.Resources", Assembly.GetExecutingAssembly());
+
+        private ImagesClass oneImage;
 
         public MainWindow()
         {
@@ -43,9 +46,6 @@ namespace WPFMultiImage
         private void InitCarousel()
         {
             Carousel = new();
-            Carousel.FileList = new();
-            Carousel.ZeroCurrent();
-            Carousel.Displayed = "";
         }
 
         private void InitToolbar()
@@ -87,11 +87,12 @@ namespace WPFMultiImage
         {
             if (FileDialogImage.OpenFileDialogImage()) //FileList is filled out
             {
-                Carousel.AddToFileList(FileDialogImage.FileNames);
+                Carousel.AddToFileList(FileDialogImage.FileNames);  //Assuming since I just pick them that they are there
 
-                DisplayImage();
+                if (Carousel.Current == -1)
+                    Carousel.ZeroCurrent();  //images loaded
 
-                WhereAmI.Content = Carousel.WhereAmI(); //More files got loaded even if image doesn't change
+                DisplayCurrentImageToScreen();
             }
         }
 
@@ -101,18 +102,33 @@ namespace WPFMultiImage
             wind.ShowDialog();
         }
 
+        private void OpenScenario_Click(object sender, RoutedEventArgs e)
+        {
+            Carousel.ReadAScenario();
+
+            if (Carousel.Current == -1)
+                Carousel.ZeroCurrent();  //images loaded
+
+            DisplayCurrentImageToScreen();
+        }
+
+        private void SaveScenario_Click(object sender, RoutedEventArgs e)
+        {
+            Carousel.WriteAScenario(); 
+        }
+
         //== Toolbar clicks
 
         private void Previous_Click(object sender, RoutedEventArgs e)
         {
             Carousel.PreviousCurrent();
-            DisplayImage();
+            DisplayCurrentImageToScreen();
         }
 
         private void Next_Click(object sender, RoutedEventArgs e)
         {
             Carousel.NextCurrent();
-            DisplayImage();
+            DisplayCurrentImageToScreen();
         }
 
         private void HideShow_Click(object sender, RoutedEventArgs e)
@@ -131,50 +147,37 @@ namespace WPFMultiImage
             }
         }
 
-        private void SaveImage_Click(object sender, RoutedEventArgs e)
+        private void SaveImage_Click(object sender, RoutedEventArgs e) //save current image
         {
-            string File2Save = (string)Carousel.FileList[Carousel.Current];
-
-            if (FileDialogImage.SaveFileDialogImage(Images[File2Save]) == true)
-            {
-                switch (FileDialogImage.ChosenExt)
-                {
-                    case "BMP":
-                        {
-                            SaveBitmaps.BMPSave(FileDialogImage.ChosenFile,Images[File2Save]);
-                            break;
-                        }
-                    case "GIF":
-                        {
-                            SaveBitmaps.GIFSave(FileDialogImage.ChosenFile, Images[File2Save]);
-                            break;
-                        }
-                    case "JPG":
-                        {
-                            SaveBitmaps.JPGSave(FileDialogImage.ChosenFile, Images[File2Save]);
-                            break;
-                        }
-                    case "PNG":
-                        {
-                            SaveBitmaps.PNGSave(FileDialogImage.ChosenFile, Images[File2Save]);
-                            break;
-                        }
-                    case "TIF":
-                        {
-                            SaveBitmaps.TIFSave(FileDialogImage.ChosenFile, Images[File2Save]);
-                            break;
-                        }
-                    default:
-                        break;
-                }//switch
-            }//if savedialog is OK
-
-        }//SaveImage_Click
+            oneImage = new();
+            oneImage.SaveImage(Images[Carousel.CurrentFile()]);
+        }
 
         private void CloseImage_Click(object sender, RoutedEventArgs e)
         {
-            string FileWhatGoes = (string)Carousel.FileList[Carousel.Current];
+            RemoveImageFromFileList(Carousel.CurrentFile()); 
+            DisplayCurrentImageToScreen();
+        }
 
+        private void CloseAll_Click(object sender, RoutedEventArgs e)
+        {
+            int imgcnt = Carousel.FileList.Count;
+
+            for (int i=0; i < imgcnt; i++)
+                RemoveImageFromFileList(Carousel.CurrentFile()); //Moves Current
+
+            DisplayCurrentImageToScreen(); //Handles ImageGrid
+        }
+
+        private void SaveMultiImage_Click(object sender, RoutedEventArgs e) //save current image
+        {
+            oneImage = new();
+            oneImage.SaveMultiImage(Images);
+        }
+        //================================================================================================
+
+        private void RemoveImageFromFileList(string FileWhatGoes) //Changes Current
+        {
             //Remove current from dictionary
             Images.Remove(FileWhatGoes);
 
@@ -182,56 +185,70 @@ namespace WPFMultiImage
             Carousel.FileList.Remove(FileWhatGoes);
 
             //Are there any files left? If so go to the next one and display
-            if (Carousel.FileList.Count > 0) 
+            if (Carousel.FileList.Count > 0)
             {
                 //Current now points to the NEXT image
                 //If we delete last image move current to 0
                 if (Carousel.Current == Carousel.FileList.Count) //We deleted last one and Current is WRONG
                     Carousel.ZeroCurrent();
-
-                DisplayImage();
             }
-            else //If not hide ImageGrid
+            else
+            {
+                Carousel.BadCurrent(); //Nothing to Display
+            }
+        }//RemoveImageFromFileList
+
+        private void DisplayCurrentImageToScreen()
+        { 
+            //If there is nothing to display get out
+            if (Carousel.Current == -1)
             {
                 ImageGrid.Visibility = Visibility.Hidden;
+                return; //this would end recursion
             }
-        }
 
-       //================================================================================================
+            //Update WhereAmI on Toolbar in case images have been added to FileList
+            WhereAmI.Content = Carousel.WhereAmI();
 
-        private void DisplayImage()
-        {
-            string file2display = (string)Carousel.FileList[Carousel.Current];
+            string file2display = Carousel.CurrentFile();
 
-            //Might already be visible
-            if (ImageGrid.Visibility == Visibility.Hidden)
-                ImageGrid.Visibility = Visibility.Visible;
+            //If displayed image is same as current image, there's nothing to do
+            if (Carousel.Displayed == file2display)
+                return;
 
-            //Might already be in the dictionary
-            if (!(Images.ContainsKey(file2display)))
+            ////Does file in FileList still exist
+            //if (!(File.Exists(file2display)))
+            //{
+            //    MessageBox.Show(file2display + " " + rm.GetString("CannotBeFound"), "", MessageBoxButton.OK);
+            //    RemoveImageFromFileList(file2display); //This move Current
+            //    DisplayCurrentImageToScreen();  //RECURSION!
+            //}
+
+            oneImage = new();
+
+            if (!(Images.ContainsKey(file2display))) //load img into dictionary if need be
             {
-                ImagesClass oneImage = new();
-
                 Mouse.OverrideCursor = Cursors.Wait;  //Worry circle?
                 Images[file2display] = oneImage.LoadImage(file2display); //Lazy loading, does not overwrite previous load no err
                 Mouse.OverrideCursor = null;
             }
 
-            //Might already be displayed
+            //Make ImageGrid visible if need be
+            if (ImageGrid.Visibility == Visibility.Hidden)
+                ImageGrid.Visibility = Visibility.Visible;
+
+            //Make image itself visible if need be
             if (Carousel.Displayed != file2display)
             {
                 RefreshScreen(Images[file2display]);
-                
-                Carousel.Displayed = file2display;     
+                Carousel.Displayed = file2display;
             }
-        }//DisplayImage
+
+        }//DisplayCurrentImageToScreen
 
         private void RefreshScreen(ImagesClass img)
         {
             //Update the xaml
-
-            //Toolbar
-            WhereAmI.Content = Carousel.WhereAmI();
 
             //Image
             theImg.Source = img.BitmapImage;
@@ -245,11 +262,9 @@ namespace WPFMultiImage
             PixelSize.Content = img.PixelSize();
             InchSize.Content = img.InchSize();
             DPISize.Content = img.DPISize();
-            PixelFormat.Content = img.BitmapImage.Format.ToString();
 
             if (!(img.BitmapMetadata is null))
-            {
-                
+            {  
                 metadataApplicationName.Content = img.ApplicationName();
                 Author.Content = img.Author();
                 CameraManufacturer.Content = img.CameraManufacturer();
@@ -270,6 +285,9 @@ namespace WPFMultiImage
                 BitsPerPixel.Content = img.BPP().ToString();
                 Masks.Content = img.Masks();
             }//Metadata
+
+            PixelFormat.Content = img.BitmapImage.Format.ToString();
+            PixelFormatDefinition.Text = PixelFormatDef.Defintion(img.BitmapImage.Format.ToString().ToUpper());
 
             //palette
             img.GetColorList();

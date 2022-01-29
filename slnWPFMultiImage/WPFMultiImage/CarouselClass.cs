@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using System.Collections;
 using System.ComponentModel;
+using System.IO;
 using System.Reflection;
 using System.Resources;
 using System.Runtime.CompilerServices;
@@ -74,9 +75,34 @@ namespace WPFMultiImage
             }
         }
 
-        //================================================================================================
+        public bool ImagesLoaded //Save Scenario enabled
+        {
+            get 
+            {
+                return (this.FileList.Count > 0);
+            }
+        }
 
-        public void AddToFileList(string[] morefiles)
+        public CarouselClass()
+        {
+            this.FileList = new();
+            this.BadCurrent();
+            this.Displayed = "";
+        }//default cons
+
+        //===============================================================================================
+
+        public string CurrentFile()
+        {
+            string ret = ""; ;
+
+            if (this.Current >= 0)
+                ret = (string)this.FileList[this.Current];
+
+            return ret;
+        }
+
+        public void AddToFileList(string[] morefiles) //From string array to arraylist
         {
 
             foreach (string fn in morefiles)
@@ -86,8 +112,82 @@ namespace WPFMultiImage
             }
         }
 
+        public void AddOneFileToFileList(string f)  //string is file name => add to arraylist
+        {
+            if (!FileList.Contains(f)) //throw away dups no message
+                if (File.Exists(f))
+                {
+                    FileList.Add(f);
+                }
+                else
+                {
+                    MessageBox.Show(f + " " + rm.GetString("CannotBeFound"), "", MessageBoxButton.OK);
+                }
+        }
+
+        public void ClearFileList()
+        {
+            FileList.Clear(); 
+        }
+
+        //==================================================================================================
+
+        public void ReadAScenario()
+        {
+            if (FileDialogImage.OpenFileScenario())
+            {
+                if (FileList.Count > 0) //there are already images loaded - clear, append, or cancel?
+                {
+                    ManageScenarios ms = new();
+                    ms.ShowDialog();
+
+                    if (ms.ManageScenariosAction == "ClearAndOpen")
+                    {
+                        ClearFileList();
+                    }
+
+                    if (ms.ManageScenariosAction != "Cancel")  //"ClearAndOpen" && "Append"
+                    {
+                        LoadScenariosIntoFileList();
+                    }
+                    //else Cancel - do nothing
+                }
+                else //Nothing loaded => proceed
+                {
+                    LoadScenariosIntoFileList();
+                }
+            }//We opened one or more scenarios
+        }//ReadAScenario
+
+        public void WriteAScenario()
+        {
+            if (FileDialogImage.SaveFileScenario())
+            {
+                using (StreamWriter sw = File.CreateText(FileDialogImage.ChosenFile))
+                {
+                    foreach (string s in FileList)
+                        sw.WriteLine(s);
+                }
+            }
+        }//WriteAScenario
+
+        private void LoadScenariosIntoFileList()
+        {
+            foreach (string scenariofn in FileDialogImage.FileNames)
+            {
+                string[] ListOFiles = File.ReadAllLines(scenariofn);
+
+                foreach (string fn in ListOFiles)
+                    AddOneFileToFileList(fn);          
+            }
+        }
+
         //=================================================================================================
 
+        public void BadCurrent()
+        {
+            this.Current = -1; //no image currently displayed
+        }
         public void ZeroCurrent()
         {
             this.Current = 0;
@@ -99,7 +199,6 @@ namespace WPFMultiImage
 
             if (this.Current < 0)
                 this.Current = this.FileList.Count-1;
-
         }
 
         public void NextCurrent()
@@ -115,5 +214,6 @@ namespace WPFMultiImage
         {
             return (this.Current + 1).ToString() + " " + rm.GetString("xOFy") + " " + this.FileList.Count.ToString();
         }
+
     }//class
 }//namespace

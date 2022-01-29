@@ -106,6 +106,69 @@ namespace WPFMultiImage.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to cannot be found.
+        /// </summary>
+        public static string CannotBeFound {
+            get {
+                return ResourceManager.GetString("CannotBeFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string Close {
+            get {
+                return ResourceManager.GetString("Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close All.
+        /// </summary>
+        public static string CloseAll {
+            get {
+                return ResourceManager.GetString("CloseAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close All Images.
+        /// </summary>
+        public static string CloseAllImages {
+            get {
+                return ResourceManager.GetString("CloseAllImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close This Image.
+        /// </summary>
+        public static string CloseThisImage {
+            get {
+                return ResourceManager.GetString("CloseThisImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display Next Image.
+        /// </summary>
+        public static string DisplayNextImage {
+            get {
+                return ResourceManager.GetString("DisplayNextImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display Previous Image.
+        /// </summary>
+        public static string DisplayPreviousImage {
+            get {
+                return ResourceManager.GetString("DisplayPreviousImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Creation Time:.
         /// </summary>
         public static string fiCreationTime {
@@ -322,6 +385,141 @@ namespace WPFMultiImage.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to _About.
+        /// </summary>
+        public static string mnuAbout {
+            get {
+                return ResourceManager.GetString("mnuAbout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Exit.
+        /// </summary>
+        public static string mnuExit {
+            get {
+                return ResourceManager.GetString("mnuExit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _File.
+        /// </summary>
+        public static string mnuFile {
+            get {
+                return ResourceManager.GetString("mnuFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Open.
+        /// </summary>
+        public static string mnuOpen {
+            get {
+                return ResourceManager.GetString("mnuOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Open Scenario.
+        /// </summary>
+        public static string mnuOpenScenario {
+            get {
+                return ResourceManager.GetString("mnuOpenScenario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Save Scenario.
+        /// </summary>
+        public static string mnuSaveScenario {
+            get {
+                return ResourceManager.GetString("mnuSaveScenario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Scenario.
+        /// </summary>
+        public static string mnuScenario {
+            get {
+                return ResourceManager.GetString("mnuScenario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are already images open!.
+        /// </summary>
+        public static string msAlreadyImages {
+            get {
+                return ResourceManager.GetString("msAlreadyImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Append the scenario(s) to the current image(s).
+        /// </summary>
+        public static string msAppend {
+            get {
+                return ResourceManager.GetString("msAppend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Don&apos;t open the scenario(s).
+        /// </summary>
+        public static string msCancel {
+            get {
+                return ResourceManager.GetString("msCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear the current image(s) and open the scenario(s) chosen.
+        /// </summary>
+        public static string msClearAndOpen {
+            get {
+                return ResourceManager.GetString("msClearAndOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What shall I do?.
+        /// </summary>
+        public static string msWhatToDo {
+            get {
+                return ResourceManager.GetString("msWhatToDo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MultiImage.
+        /// </summary>
+        public static string MultiImage {
+            get {
+                return ResourceManager.GetString("MultiImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save all images as one .TIF.
+        /// </summary>
+        public static string MultiImageTooltip {
+            get {
+                return ResourceManager.GetString("MultiImageTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next.
+        /// </summary>
+        public static string Next {
+            get {
+                return ResourceManager.GetString("Next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No Palette.
         /// </summary>
         public static string NoPaletteTitle {
@@ -345,6 +543,15 @@ namespace WPFMultiImage.Properties {
         public static string ofdFilter {
             get {
                 return ResourceManager.GetString("ofdFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Scenario File.
+        /// </summary>
+        public static string OpenFileScenario {
+            get {
+                return ResourceManager.GetString("OpenFileScenario", resourceCulture);
             }
         }
         
@@ -385,6 +592,15 @@ namespace WPFMultiImage.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Previous.
+        /// </summary>
+        public static string Previous {
+            get {
+                return ResourceManager.GetString("Previous", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Red:.
         /// </summary>
         public static string Red {
@@ -394,11 +610,38 @@ namespace WPFMultiImage.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save Scenario File.
+        /// </summary>
+        public static string SaveFileScenario {
+            get {
+                return ResourceManager.GetString("SaveFileScenario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Image.
+        /// </summary>
+        public static string SaveImage {
+            get {
+                return ResourceManager.GetString("SaveImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save Image File.
         /// </summary>
         public static string SaveImageFile {
             get {
                 return ResourceManager.GetString("SaveImageFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save This Image.
+        /// </summary>
+        public static string SaveThisImage {
+            get {
+                return ResourceManager.GetString("SaveThisImage", resourceCulture);
             }
         }
         
@@ -453,6 +696,15 @@ namespace WPFMultiImage.Properties {
         public static string SizeInPixels {
             get {
                 return ResourceManager.GetString("SizeInPixels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text Files (*.txt)|*.txt;.
+        /// </summary>
+        public static string TextFiles {
+            get {
+                return ResourceManager.GetString("TextFiles", resourceCulture);
             }
         }
         

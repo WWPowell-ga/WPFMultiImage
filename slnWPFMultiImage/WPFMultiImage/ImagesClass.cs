@@ -24,7 +24,7 @@ namespace WPFMultiImage
         }
 
         ResourceManager rm = new ResourceManager("WPFMultiImage.Properties.Resources", Assembly.GetExecutingAssembly());
-        
+
         private FileInfo _fileinfo;
         public FileInfo FileInfo
         {
@@ -515,9 +515,53 @@ namespace WPFMultiImage
             }
         }
 
+        public void SaveImage(ImagesClass img)
+        {
+            if (FileDialogImage.SaveFileDialogImage(img) == true)
+            {
+                switch (FileDialogImage.ChosenExt)
+                {
+                    case "BMP":
+                        {
+                            SaveBitmaps.BMPSave(FileDialogImage.ChosenFile, img);
+                            break;
+                        }
+                    case "GIF":
+                        {
+                            SaveBitmaps.GIFSave(FileDialogImage.ChosenFile, img);
+                            break;
+                        }
+                    case "JPG":
+                        {
+                            SaveBitmaps.JPGSave(FileDialogImage.ChosenFile, img);
+                            break;
+                        }
+                    case "PNG":
+                        {
+                            SaveBitmaps.PNGSave(FileDialogImage.ChosenFile, img);
+                            break;
+                        }
+                    case "TIF":
+                        {
+                            SaveBitmaps.TIFSave(FileDialogImage.ChosenFile, img);
+                            break;
+                        }
+                    default:
+                        break;
+                }//switch
+            }//if savedialog is OK
+        }//SaveImage
 
-    }//ImageClass
+        public void SaveMultiImage(Dictionary<string, ImagesClass> dict)
+        {
+            if (FileDialogImage.SaveFileDialogMulti() == true)
+            {
+                SaveBitmaps.MultiTIFSave(FileDialogImage.ChosenFile, dict);
+            }
 
+            }//SaveMultiImage
+
+    }//ImagesClass
     //== For palette list box
     public class ColorInfo
     {

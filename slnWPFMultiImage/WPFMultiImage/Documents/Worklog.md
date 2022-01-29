@@ -111,7 +111,7 @@ tackling those.
 
 About Box completed though it is plain.
 
-#2022 Jan 22
+## 2022 Jan 22
 Completed moving text strings to resource file.  
 That's all I'll do for internationalization.  
 
@@ -119,7 +119,7 @@ The right sidebar is what it is. Every thing else I tried just looks wrong.
 
 I wonder if palette sorting is at all useful? Adding it to RoadmapBeta  
 
-#2022 Jan 23
+## 2022 Jan 23
 Marshall Westbrook emailed
 
 *When saving images on my computer I noticed that the default name for files is the full containing folder's path (in addition to the original image's name).*
@@ -128,5 +128,35 @@ Marshall Westbrook emailed
 *Expected Behavior: Saving as file name "Capture.tif"*
 
 So I fixed it.
+
+Also added code [again from Marshall] to center open/save dialogs.
+
+Started on opening/saving 'scenarios' - the ability to save which group of images is currently loaded  
+and then reload them.
+
+## 2022 Jan 24
+Workin on scenarios
+
+I need a 'Close All' btn on toolbar
+
+## 2022 Jan 25
+Suppose a file is added to a scenario but then is deleted - what should happen when the scenario loads?  
+Message box or no?  
+Suppose a scenario has no good files?  
+Rewriting the load-up routines as a consequence of bad filenames in a scenario...  
+
+## 2022 Jan 26
+Got scenarios working  
+
+## 2022 Jan 27
+Wrote LeftToDo.md and added to docs  
+
+System.Windows.Media.PixelForm is problematic. Do I want to shove big blocks of text in Resources file?
+
+Argh! I keep finding English I have not shoved in the resource file.  
+Tonight it was Toolbar Button Tooltips.  
+Wonder could you write a VS extension to find stuff that needs to be translated.  
+It isn't just EVERY string.  
+I even forgot the button text. LOL.  
 
 

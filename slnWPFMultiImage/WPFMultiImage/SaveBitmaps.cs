@@ -31,6 +31,20 @@ namespace WPFMultiImage
                 enc.Save(filestream);
         }//GIF
 
+        public static void MultiTIFSave(string fn, Dictionary<string,ImagesClass> D) //Save all images as multiimage .GIF
+        {
+            TiffBitmapEncoder enc = new();
+
+            foreach(ImagesClass i in D.Values)
+            {
+                enc.Frames.Add(BitmapFrame.Create(i.BitmapImage));
+            }  
+
+            using (var filestream = new FileStream(fn, FileMode.Create))
+                enc.Save(filestream);
+
+        }
+
         public static void JPGSave(string fn, ImagesClass i)
         {
             JpegBitmapEncoder enc = new JpegBitmapEncoder();

@@ -17,10 +17,10 @@ namespace WPFMultiImage
     {
         static ResourceManager rm = new ResourceManager("WPFMultiImage.Properties.Resources", Assembly.GetExecutingAssembly());
 
-        public static string[] FileNames; //Array of files just selected in Open
+        public static string[] FileNames; //Array of files just selected in Open - images or scenarios
 
-        public static string ChosenFile; //Filename chosen in save
-        public static string ChosenExt; //Extension chosen in save
+        public static string ChosenFile; //Filename chosen in save - image or scenario
+        public static string ChosenExt; //Extension chosen in save - image or scenario
 
         public static bool OpenFileDialogImage()
         {
@@ -31,19 +31,131 @@ namespace WPFMultiImage
             ofd.CheckPathExists = true;
             ofd.Filter = rm.GetString("ofdFilter");
             ofd.Multiselect = true;
-            ofd.Title = "Open Image Files";   
-            ofd.Title = rm.GetString("OpenImageFiles");
+            ofd.Title = rm.GetString("OpenImageFiles");   
 
             Window dialogPositioningWindow = PositionFileDialogWindow();
+
             if (ofd.ShowDialog() == true)
             {
                 FileNames = ofd.FileNames;
                 retval = true; //if ShowDialog is false or null return false
             }
+
             dialogPositioningWindow.Close();
 
             return retval;
         }
+
+        public static bool SaveFileDialogImage(ImagesClass i)
+        {
+            bool retval = false;
+
+            SaveFileDialog sfd = new();
+            sfd.Title = rm.GetString("SaveImageFile");
+
+            sfd.FileName = i.FileInfo.Name;
+            
+            sfd.Filter = rm.GetString("sfdFilter");
+            sfd.DefaultExt = i.FileType;
+            sfd.FilterIndex = i.SaveFilterIndex;
+            sfd.AddExtension = true;
+            sfd.OverwritePrompt = true;
+
+            Window dialogPositioningWindow = PositionFileDialogWindow();
+
+            if (sfd.ShowDialog() == true)
+            {
+                ChosenFile = sfd.FileName;
+                ChosenExt = sfd.DefaultExt;
+                retval = true; //if ShowDialog is false or null return false
+            }
+
+            dialogPositioningWindow.Close();
+
+            return retval;
+        }
+
+        public static bool SaveFileDialogMulti()
+        {
+            bool retval = false;
+
+            SaveFileDialog sfd = new();
+            sfd.Title = rm.GetString("SaveImageFile");
+
+            sfd.Filter = "TIF(*.TIF)|*.tif";
+            sfd.DefaultExt = ".TIF";
+            sfd.FilterIndex = 1;
+            sfd.AddExtension = true;
+            sfd.OverwritePrompt = true;
+
+            Window dialogPositioningWindow = PositionFileDialogWindow();
+
+            if (sfd.ShowDialog() == true)
+            {
+                ChosenFile = sfd.FileName;
+                ChosenExt = sfd.DefaultExt;
+                retval = true; //if ShowDialog is false or null return false
+            }
+
+            dialogPositioningWindow.Close();
+
+            return retval;
+        }
+
+        //==
+
+        public static bool OpenFileScenario()
+        {
+            bool retval = false;
+
+            OpenFileDialog ofd = new();
+            ofd.CheckFileExists = true;
+            ofd.CheckPathExists = true;
+            
+            ofd.Multiselect = true;
+            ofd.Title = rm.GetString("OpenFileScenario");
+            ofd.Filter = rm.GetString("TextFiles");
+
+            Window dialogPositioningWindow = PositionFileDialogWindow();
+
+            if (ofd.ShowDialog() == true)
+            {
+                FileNames = ofd.FileNames;
+                retval = true; //if ShowDialog is false or null return false
+            }
+
+            dialogPositioningWindow.Close();
+
+            return retval;
+        }
+
+        public static bool SaveFileScenario()
+        {
+            bool retval = false;
+
+            SaveFileDialog sfd = new();
+            sfd.Title = rm.GetString("SaveFileScenario");
+
+            sfd.FileName = "Scenario";
+            sfd.Filter = rm.GetString("TextFiles"); 
+            sfd.AddExtension = true;
+            sfd.OverwritePrompt = true;
+
+            Window dialogPositioningWindow = PositionFileDialogWindow();
+
+            if (sfd.ShowDialog() == true)
+            {
+                ChosenFile = sfd.FileName;
+                ChosenExt = "";
+                retval = true; //if ShowDialog is false or null return false
+            }
+
+            dialogPositioningWindow.Close();
+
+            return retval;
+        }
+
+        //==
 
         // This works but definitely isn't ideal. Can use DLL imports if a
         // cleaner solution is needed. (https://stackoverflow.com/a/10489660)
@@ -75,37 +187,6 @@ namespace WPFMultiImage
             // Fix this: returning the window so that the method caller
             // can close the window. Do we use a timer instead?
             return dialogPositioningWindow;
-        }
-
-        public static bool SaveFileDialogImage(ImagesClass i)
-        {
-            bool retval = false;
-
-            SaveFileDialog sfd = new();
-            sfd.Title = rm.GetString("SaveImageFile");
-
-            //string fullname = i.FileInfo.;
-            //string pathonly = Path.GetDirectoryName(fullname);
-            //string fnonly = Path.GetFileNameWithoutExtension(fullname);
-            //string fndialog = Path.Combine(pathonly,fnonly);
-            sfd.FileName = i.FileInfo.Name;
-            
-            sfd.Filter = rm.GetString("sfdFilter");
-            sfd.DefaultExt = i.FileType;
-            sfd.FilterIndex = i.SaveFilterIndex;
-            sfd.AddExtension = true;
-
-            Window dialogPositioningWindow = PositionFileDialogWindow();
-            if (sfd.ShowDialog() == true)
-            {
-                ChosenFile = sfd.FileName;
-                ChosenExt = sfd.DefaultExt;
-                retval = true; //if ShowDialog is false or null return false
-            }
-            dialogPositioningWindow.Close();
-
-            return retval;
-
         }
 
     }//class

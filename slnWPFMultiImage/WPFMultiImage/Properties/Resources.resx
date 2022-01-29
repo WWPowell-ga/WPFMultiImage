@@ -137,6 +137,34 @@
     <value>Blue:</value>
     <comment>Above palette listbox</comment>
   </data>
+  <data name="CannotBeFound" xml:space="preserve">
+    <value>cannot be found</value>
+    <comment>Errmessage</comment>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+    <comment>Toolbar</comment>
+  </data>
+  <data name="CloseAll" xml:space="preserve">
+    <value>Close All</value>
+    <comment>Toolbar</comment>
+  </data>
+  <data name="CloseAllImages" xml:space="preserve">
+    <value>Close All Images</value>
+    <comment>Toolbar</comment>
+  </data>
+  <data name="CloseThisImage" xml:space="preserve">
+    <value>Close This Image</value>
+    <comment>Toolbar</comment>
+  </data>
+  <data name="DisplayNextImage" xml:space="preserve">
+    <value>Display Next Image</value>
+    <comment>Toolbar</comment>
+  </data>
+  <data name="DisplayPreviousImage" xml:space="preserve">
+    <value>Display Previous Image</value>
+    <comment>Toolbar</comment>
+  </data>
   <data name="fiCreationTime" xml:space="preserve">
     <value>Creation Time:</value>
     <comment>Stats</comment>
@@ -233,6 +261,66 @@
     <value>Title:</value>
     <comment>metadata</comment>
   </data>
+  <data name="mnuAbout" xml:space="preserve">
+    <value>_About</value>
+    <comment>Menu</comment>
+  </data>
+  <data name="mnuExit" xml:space="preserve">
+    <value>_Exit</value>
+    <comment>Menu</comment>
+  </data>
+  <data name="mnuFile" xml:space="preserve">
+    <value>_File</value>
+    <comment>Menu</comment>
+  </data>
+  <data name="mnuOpen" xml:space="preserve">
+    <value>_Open</value>
+    <comment>Menu</comment>
+  </data>
+  <data name="mnuOpenScenario" xml:space="preserve">
+    <value>_Open Scenario</value>
+    <comment>Menu</comment>
+  </data>
+  <data name="mnuSaveScenario" xml:space="preserve">
+    <value>_Save Scenario</value>
+    <comment>Menu</comment>
+  </data>
+  <data name="mnuScenario" xml:space="preserve">
+    <value>_Scenario</value>
+    <comment>Menu</comment>
+  </data>
+  <data name="msAlreadyImages" xml:space="preserve">
+    <value>There are already images open!</value>
+    <comment>ManageScenarios</comment>
+  </data>
+  <data name="msAppend" xml:space="preserve">
+    <value>Append the scenario(s) to the current image(s)</value>
+    <comment>ManageScenarios</comment>
+  </data>
+  <data name="msCancel" xml:space="preserve">
+    <value>Don't open the scenario(s)</value>
+    <comment>ManageScenarios</comment>
+  </data>
+  <data name="msClearAndOpen" xml:space="preserve">
+    <value>Clear the current image(s) and open the scenario(s) chosen</value>
+    <comment>ManageScenarios</comment>
+  </data>
+  <data name="msWhatToDo" xml:space="preserve">
+    <value>What shall I do?</value>
+    <comment>ManageScenarios</comment>
+  </data>
+  <data name="MultiImage" xml:space="preserve">
+    <value>MultiImage</value>
+    <comment>Toolbar</comment>
+  </data>
+  <data name="MultiImageTooltip" xml:space="preserve">
+    <value>Save all images as one .TIF</value>
+    <comment>Toolbar</comment>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+    <comment>Toolbar</comment>
+  </data>
   <data name="NoPaletteTitle" xml:space="preserve">
     <value>No Palette</value>
     <comment>Above palette listbox</comment>
@@ -243,6 +331,10 @@
   </data>
   <data name="ofdFilter" xml:space="preserve">
     <value>All Files (*.*)|*.*|Image Files (*.bmp;*.gif;*.ico;*.jpeg;*.jpg;*.png;*.tif;*.tiff)|*.bmp;*.gif;*.ico;*.jpeg;*.jpg;*.png,*.tif;*.tiff"</value>
+    <comment>Open File Dialog</comment>
+  </data>
+  <data name="OpenFileScenario" xml:space="preserve">
+    <value>Open Scenario File</value>
     <comment>Open File Dialog</comment>
   </data>
   <data name="OpenImageFiles" xml:space="preserve">
@@ -261,13 +353,29 @@
     <value>Pixel Format:</value>
     <comment>Stats</comment>
   </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Previous</value>
+    <comment>Toolbar</comment>
+  </data>
   <data name="Red" xml:space="preserve">
     <value>Red:</value>
     <comment>Above palette listbox</comment>
   </data>
+  <data name="SaveFileScenario" xml:space="preserve">
+    <value>Save Scenario File</value>
+    <comment>Save File Dialog</comment>
+  </data>
+  <data name="SaveImage" xml:space="preserve">
+    <value>Save Image</value>
+    <comment>Toolbar</comment>
+  </data>
   <data name="SaveImageFile" xml:space="preserve">
     <value>Save Image File</value>
     <comment>FileDialog</comment>
+  </data>
+  <data name="SaveThisImage" xml:space="preserve">
+    <value>Save This Image</value>
+    <comment>Toolbar</comment>
   </data>
   <data name="sfdFilter" xml:space="preserve">
     <value>BMP (*.bmp)|*.bmp|GIF (*.gif)|*.gif|JPG (*.jpg)|*.jpg|PNG (*.png)|*.png|TIF (*.tif)|*.tif</value>
@@ -292,6 +400,10 @@
   <data name="SizeInPixels" xml:space="preserve">
     <value>Size In Pixels:</value>
     <comment>Stats</comment>
+  </data>
+  <data name="TextFiles" xml:space="preserve">
+    <value>Text Files (*.txt)|*.txt;</value>
+    <comment>File Dialogs</comment>
   </data>
   <data name="x" xml:space="preserve">
     <value>x</value>
