@@ -13,3 +13,7 @@ This needs a rethink.
 
 Install Guide
 User Guide
+
+PostBeta:
+
+Fixed 'Lazy Loading' error on MultiTiff save

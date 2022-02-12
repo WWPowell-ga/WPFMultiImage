@@ -171,8 +171,36 @@ namespace WPFMultiImage
 
         private void SaveMultiImage_Click(object sender, RoutedEventArgs e) //save current image
         {
+            if (Carousel.FileList.Count > Images.Count)
+                LoadRemainingImages();  //from FileList to dict
+
             oneImage = new();
             oneImage.SaveMultiImage(Images);
+
+            void LoadRemainingImages()
+            {
+                int i = 0;
+                string nxtimg;
+
+                while (Images.Count < Carousel.FileList.Count)
+                {
+                    nxtimg = (string)Carousel.FileList[i];
+                    LoadOneImage(nxtimg); //might add one might not
+                    i++;
+                }
+            }
+        }
+
+        private void LoadOneImage(string f) //Into dict.
+        {
+            oneImage = new();
+
+            if (!(Images.ContainsKey(f))) //load img into dictionary if need be
+            {
+                Mouse.OverrideCursor = Cursors.Wait;  //Worry circle?
+                Images[f] = oneImage.LoadImage(f); //Lazy loading, does not overwrite previous load no err
+                Mouse.OverrideCursor = null;
+            }
         }
         //================================================================================================
 
@@ -223,15 +251,8 @@ namespace WPFMultiImage
             //    RemoveImageFromFileList(file2display); //This move Current
             //    DisplayCurrentImageToScreen();  //RECURSION!
             //}
-
-            oneImage = new();
-
-            if (!(Images.ContainsKey(file2display))) //load img into dictionary if need be
-            {
-                Mouse.OverrideCursor = Cursors.Wait;  //Worry circle?
-                Images[file2display] = oneImage.LoadImage(file2display); //Lazy loading, does not overwrite previous load no err
-                Mouse.OverrideCursor = null;
-            }
+           
+            LoadOneImage(file2display); //into dict
 
             //Make ImageGrid visible if need be
             if (ImageGrid.Visibility == Visibility.Hidden)

@@ -19,7 +19,7 @@ namespace WPFMultiImage
                     break;
 
                 case "BGRA32":
-                    ret = "Bgra32 is a sRGB format with 32 bits per pixel(BPP). Each channel(blue, green, red, and alpha) is allocated 8 bits per pixel(BPP).";
+                    ret = "Bgra32 is a sRGB format with 32 bits per pixel(BPP). Each channel (blue, green, red, and alpha) is allocated 8 bits per pixel(BPP).";
                     break;
 
                 case "INDEXED8":
